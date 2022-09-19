@@ -3,11 +3,6 @@ html {
   margin: 0px;
 }
 
-.powerpuff-title {
-  font-family: 'PowerpuffFont', serif;
-  font-size: 60px;
-}
-
 .board {
   width: 100vw;
   height: 100vh;
@@ -16,16 +11,67 @@ html {
 }
 
 .board__center {
-  flex: 3;
-  background-color: hotpink;
+  flex: 2.5;
+  background-color: #ea1f4c;
+  text-align: center;
 }
 
-.board__side-right {
-  flex: 1;
-  background-color: aquamarine;
+.board__center__title {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 70px;
+  color: var(--font-color);
+  margin-bottom: -10px;
 }
 
-.board__side-left {
-  flex: 1;
-  background-color: yellow;
+.board__center_text {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 30px;
+  color: var(--font-color);
+}
+
+.board__center__icon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.board__center__icons {
+  font-size: 175px;
+}
+
+.board__side {
+  flex: 0.5;
+  text-align: center;
+  background-color: #ee648a;
+}
+
+.board__side__icon {
+  font-size: 60px;
+  margin-bottom: -30px;
+}
+
+.board__side__players-text {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 30px;
+  color: var(--font-color);
+}
+
+.board__side__wins-text {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 25px;
+  color: var(--font-color);
+}
+
+.board__side__btn {
+  all: unset;
+  cursor: pointer;
+  background-color: #ea1f4c;
+  color: var(--font-color);
+  font-size: 20px;
+  width: 160px;
+  padding: 18px;
+  margin-top: 70px;
 }
