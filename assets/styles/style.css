@@ -7,3 +7,25 @@ html {
   font-family: 'PowerpuffFont', serif;
   font-size: 60px;
 }
+
+.board {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.board__center {
+  flex: 3;
+  background-color: hotpink;
+}
+
+.board__side-right {
+  flex: 1;
+  background-color: aquamarine;
+}
+
+.board__side-left {
+  flex: 1;
+  background-color: yellow;
+}
