@@ -3,11 +3,6 @@ html {
   margin: 0px;
 }
 
-.powerpuff-title {
-  font-family: 'PowerpuffFont', serif;
-  font-size: 60px;
-}
-
 .board {
   width: 100vw;
   height: 100vh;
@@ -18,14 +13,32 @@ html {
 .board__center {
   flex: 3;
   background-color: hotpink;
+  text-align: center;
 }
 
-.board__side-right {
-  flex: 1;
-  background-color: aquamarine;
+.board__center__title {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 70px;
+  margin-bottom: -10px;
 }
 
-.board__side-left {
+.board__center_text {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 30px;
+}
+
+.board__side {
   flex: 1;
-  background-color: yellow;
+  text-align: center;
+  background-color: red;
+}
+
+.board__side__players-text {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 30px;
+}
+
+.board__side__icon {
+  font-size: 60px;
+  margin-bottom: -30px;
 }
