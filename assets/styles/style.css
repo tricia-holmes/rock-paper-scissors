@@ -1,0 +1,9 @@
+body,
+html {
+  margin: 0px;
+}
+
+.powerpuff-title {
+  font-family: 'PowerpuffFont', serif;
+  font-size: 60px;
+}
