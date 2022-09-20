@@ -22,47 +22,23 @@ function selectChoice(event) {
   console.log('COMPUTER', computerSelection)
   // we compare user vs computer choices
 
-  // Draws
   if (userSelection === computerSelection) {
     console.log('You have a draw!')
-  }
-
-  // Paper & Scissors
-  if (userSelection === 'paper' && computerSelection === 'scissors') {
+  } else if (
+    (userSelection === 'paper' && computerSelection === 'scissors') ||
+    (userSelection === 'scissors' && computerSelection === 'rock') ||
+    (userSelection === 'rock' && computerSelection === 'paper')
+  ) {
     computer.wins++
     console.log('Computer wins!')
-  }
-
-  if (userSelection === 'scissors' && computerSelection === 'paper') {
+  } else {
     user.wins++
     console.log('User wins!')
   }
 
-  // Rock & Scissors
-  if (userSelection === 'scissors' && computerSelection === 'rock') {
-    computer.wins++
-    console.log('Computer wins!')
-  }
-
-  if (userSelection === 'rock' && computerSelection === 'scissors') {
-    user.wins++
-    console.log('User wins!')
-  }
-
-  // Paper & Rock
-  if (userSelection === 'rock' && computerSelection === 'paper') {
-    computer.wins++
-    console.log('Computer wins!')
-  }
-
-  if (userSelection === 'paper' && computerSelection === 'rock') {
-    user.wins++
-    console.log('User wins!')
-  }
-
-  // we have a result
-  // we add win to winner score
   // we reset the board
+  console.log(computer)
+  console.log(user)
 }
 
 function getComputerChoice() {
