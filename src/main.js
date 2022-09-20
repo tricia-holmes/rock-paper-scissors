@@ -1,5 +1,6 @@
 // DOM Elements
 var choiceIcons = document.querySelectorAll('.board__center__icons')
+var scores = document.querySelectorAll('.board__side__wins-text')
 
 // Global Variables
 var user = new Player('User', '👩🏻')
@@ -15,5 +16,15 @@ for (var i = 0; i < choiceIcons.length; i++) {
 function selectChoice(event) {
   var userSelection = event.target.dataset.iconType
   game.playRound(userSelection)
-  
+  updateWins()
+}
+
+function updateWins() {
+  for (var i = 0; i < scores.length; i++) {
+    if (scores[i].dataset.winType === 'human') {
+      scores[i].innerText = `Wins:${user.wins}`
+    } else {
+      scores[i].innerText = `Wins:${computer.wins}`
+    }
+  }
 }
