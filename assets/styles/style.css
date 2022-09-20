@@ -3,6 +3,10 @@ html {
   margin: 0px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .board {
   width: 100vw;
   height: 100vh;
@@ -40,6 +44,12 @@ html {
 
 .board__center__icons {
   font-size: 175px;
+}
+
+.board__center-user-token {
+  font-size: 50px;
+  position: relative;
+  top: -204px;
 }
 
 .board__side {
