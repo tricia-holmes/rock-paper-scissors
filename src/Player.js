@@ -5,5 +5,8 @@ class Player {
     this.wins = 0
   }
 
-  takeTurn() {}
+  addWin() {
+    this.wins++ 
+    console.log(`${this.token} ${this.name} won this round! ${this.token}`)
+  }
 }
