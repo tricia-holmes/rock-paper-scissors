@@ -16,9 +16,11 @@ for (var i = 0; i < choiceIcons.length; i++) {
 // Event Handlers
 function selectChoice(event) {
   var userSelection = event.target.dataset.iconType
-  game.playRound(userSelection)
+
+  var result = game.playRound(userSelection)
+  tagline.innerText = result
+
   updateWins()
-  updateTagline()
 }
 
 function updateWins() {
@@ -29,8 +31,4 @@ function updateWins() {
       scores[i].innerText = `Wins:${computer.wins}`
     }
   }
-}
-
-function updateTagline() {
-  tagline.innerText = game.result
 }
