@@ -1,6 +1,7 @@
 // DOM Elements
 var choiceIcons = document.querySelectorAll('.board__center__icons')
 var scores = document.querySelectorAll('.board__side__wins-text')
+var tagline = document.querySelector('.board__center_text')
 
 // Global Variables
 var user = new Player('User', '👩🏻')
@@ -17,6 +18,7 @@ function selectChoice(event) {
   var userSelection = event.target.dataset.iconType
   game.playRound(userSelection)
   updateWins()
+  updateTagline()
 }
 
 function updateWins() {
@@ -27,4 +29,8 @@ function updateWins() {
       scores[i].innerText = `Wins:${computer.wins}`
     }
   }
+}
+
+function updateTagline() {
+  tagline.innerText = game.result
 }
