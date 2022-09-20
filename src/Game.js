@@ -8,15 +8,15 @@ class Game {
     var computerSelection = this.#getComputerChoice()
 
     if (userSelection === computerSelection) {
-      console.log(`💔 It's a draw! 💔`)
+      return `💔 It's a draw! 💔`
     } else if (
       (userSelection === 'paper' && computerSelection === 'scissors') ||
       (userSelection === 'scissors' && computerSelection === 'rock') ||
       (userSelection === 'rock' && computerSelection === 'paper')
     ) {
-      this.computer.addWin()
+      return this.computer.addWin()
     } else {
-      this.user.addWin()
+      return this.user.addWin()
     }
   }
 

@@ -6,7 +6,7 @@ class Player {
   }
 
   addWin() {
-    this.wins++ 
-    console.log(`${this.token} ${this.name} won this round! ${this.token}`)
+    this.wins++
+    return `${this.token} ${this.name} won this round! ${this.token}`
   }
 }
