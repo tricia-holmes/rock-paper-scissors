@@ -44,12 +44,13 @@ html {
 
 .board__center__icons {
   font-size: 175px;
+  cursor: pointer;
 }
 
 .board__center-user-token {
   font-size: 50px;
   position: relative;
-  top: -204px;
+  top: -224px;
 }
 
 .board__side {

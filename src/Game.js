@@ -2,10 +2,12 @@ class Game {
   constructor(user, computer) {
     this.user = user
     this.computer = computer
+    this.computerChoice
   }
 
   playRound(userSelection) {
     var computerSelection = this.#getComputerChoice()
+    this.computerChoice = computerSelection
 
     if (userSelection === computerSelection) {
       return `💔 It's a draw! 💔`

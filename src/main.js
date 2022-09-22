@@ -9,6 +9,7 @@ var user = new Player('User', '👩🏻')
 var computer = new Player('Computer', '💻')
 var game = new Game(user, computer)
 var userSelection
+var result
 
 // Event listeners
 for (var i = 0; i < choiceIcons.length; i++) {
@@ -18,14 +19,12 @@ for (var i = 0; i < choiceIcons.length; i++) {
 // Event Handlers
 function selectChoice(event) {
   userSelection = event.target.dataset.iconType
-  console.log(userSelection)
-
-  var result = game.playRound(userSelection)
-  tagline.innerText = result
+  result = game.playRound(userSelection)
 
   updateWins()
   showUserSelection()
-  // setTimeout(hideUserSelection, 1500)
+  finishRound()
+  setTimeout(resetBoard, 2200)
 }
 
 function updateWins() {
@@ -38,13 +37,20 @@ function updateWins() {
   }
 }
 
+function show(element) {
+  element.classList.remove('hidden')
+}
+
 function showUserSelection() {
   for (var i = 0; i < choiceTokens.length; i++) {
     if (choiceTokens[i].dataset.tokenType === userSelection) {
       show(choiceTokens[i])
-      console.log('HERE')
     }
   }
+}
+
+function hide(element) {
+  element.classList.add('hidden')
 }
 
 function hideUserSelection() {
@@ -53,10 +59,34 @@ function hideUserSelection() {
   }
 }
 
-function hide(element) {
-  element.classList.add('hidden')
+function hideNonSelectedIcon() {
+  for (var i = 0; i < choiceIcons.length; i++) {
+    if (
+      choiceIcons[i].dataset.iconType !== userSelection &&
+      choiceIcons[i].dataset.iconType !== game.computerChoice
+    ) {
+      hide(choiceIcons[i])
+    }
+  }
 }
 
-function show(element) {
-  element.classList.remove('hidden')
+function showResult() {
+  tagline.innerText = result
+}
+
+function resetResult() {
+  tagline.innerText = 'Choose your fighter!'
+}
+
+function finishRound() {
+  setTimeout(hideUserSelection, 500)
+  setTimeout(hideNonSelectedIcon, 500)
+  setTimeout(showResult, 500)
+}
+
+function resetBoard() {
+  for (var i = 0; i < choiceIcons.length; i++) {
+    show(choiceIcons[i])
+  }
+  resetResult()
 }
