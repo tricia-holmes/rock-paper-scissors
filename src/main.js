@@ -1,15 +1,24 @@
-// DOM Elements
-var choiceIcons = document.querySelectorAll('.board__center__icons')
-var scores = document.querySelectorAll('.board__side__wins-text')
-var tagline = document.querySelector('.board__center_text')
-var choiceTokens = document.querySelectorAll('.board__center-user-token')
-
 // Global Variables
-var user = new Player('User', '👩🏻')
-var computer = new Player('Computer', '💻')
+var iconMap = {
+  user: '👩🏻',
+  computer: '💻',
+  rock: '🪨',
+  scissors: '✂️',
+  paper: '📄',
+}
+var user = new Player('User', iconMap.user)
+var computer = new Player('Computer', iconMap.computer)
 var game = new Game(user, computer)
 var userSelection
 var result
+
+// DOM Elements
+var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
+var scores = document.querySelectorAll('.board__side__wins-text')
+var tagline = document.querySelector('.board__subtitle')
+var choiceTokens = document.querySelectorAll('.board__user-select-icon')
+var iconContainer = document.querySelector('.board__icon-container')
+
 
 // Event listeners
 for (var i = 0; i < choiceIcons.length; i++) {
@@ -18,14 +27,25 @@ for (var i = 0; i < choiceIcons.length; i++) {
 
 // Event Handlers
 function selectChoice(event) {
-  userSelection = event.target.dataset.iconType
+  userSelection = event.currentTarget.dataset.iconType
   result = game.playRound(userSelection)
+  var gameSelectionElem
 
-  updateWins()
+  if (result === `💔 It's a draw! 💔`) {
+    gameSelectionElem = createGameSelection(userSelection)
+  }
+
   showUserSelection()
-  finishRound()
-  setTimeout(resetBoard, 2200)
+  setTimeout(updateWins,500)
+  setTimeout(function () {
+    finishRound(gameSelectionElem)
+  }, 700)
+  setTimeout(function () {
+    resetBoard(gameSelectionElem)
+  }, 2200)
 }
+
+// Helper functions
 
 function updateWins() {
   for (var i = 0; i < scores.length; i++) {
@@ -43,7 +63,10 @@ function show(element) {
 
 function showUserSelection() {
   for (var i = 0; i < choiceTokens.length; i++) {
-    if (choiceTokens[i].dataset.tokenType === userSelection) {
+    if (
+      choiceTokens[i].closest('button[data-icon-type]').dataset.iconType ===
+      userSelection
+    ) {
       show(choiceTokens[i])
     }
   }
@@ -70,6 +93,12 @@ function hideNonSelectedIcon() {
   }
 }
 
+function appendGameSelection(gameSelection) {
+  if (gameSelection) {
+    iconContainer.appendChild(gameSelection)
+  }
+}
+
 function showResult() {
   tagline.innerText = result
 }
@@ -78,15 +107,31 @@ function resetResult() {
   tagline.innerText = 'Choose your fighter!'
 }
 
-function finishRound() {
-  setTimeout(hideUserSelection, 500)
-  setTimeout(hideNonSelectedIcon, 500)
-  setTimeout(showResult, 500)
+function finishRound(gameSelection) {
+  hideNonSelectedIcon()
+  appendGameSelection(gameSelection)
+  showResult()
 }
 
-function resetBoard() {
+function resetBoard(tiedGameIcon) {
+  if (tiedGameIcon) {
+    tiedGameIcon.remove()
+  }
+
   for (var i = 0; i < choiceIcons.length; i++) {
     show(choiceIcons[i])
   }
+  hideUserSelection()
   resetResult()
+}
+
+function createGameSelection(id) {
+  var newGameSelection = document.createElement('div')
+  var newGameSelectionIcon = document.createElement('span')
+  newGameSelectionIcon.innerHTML = iconMap[id]
+  
+  newGameSelection.classList.add('board__icon-wrapper')
+  newGameSelection.dataset.iconType = id
+  newGameSelection.appendChild(newGameSelectionIcon)
+  return newGameSelection
 }

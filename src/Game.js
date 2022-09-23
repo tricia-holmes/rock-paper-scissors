@@ -3,6 +3,7 @@ class Game {
     this.user = user
     this.computer = computer
     this.computerChoice
+    this.result
   }
 
   playRound(userSelection) {
