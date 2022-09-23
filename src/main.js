@@ -9,14 +9,14 @@ var iconMap = {
 var user = new Player('User', iconMap.user)
 var computer = new Player('Computer', iconMap.computer)
 var game = new Game(user, computer)
-var userSelection
-var result
+var userSelection // need this to live in the player class
+var result // need this to live in the game class
 
 // DOM Elements
 var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
-var scores = document.querySelectorAll('.board__side__wins-text')
+var scores = document.querySelectorAll('.board__wins')
 var tagline = document.querySelector('.board__subtitle')
-var choiceTokens = document.querySelectorAll('.board__user-select-icon')
+var choiceTokens = document.querySelectorAll('.board__user-selection-icon')
 var iconContainer = document.querySelector('.board__icon-container')
 
 

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/styles/style.css" />
   </head>
   <body>
-    <section class="home layout-full">
+    <section class="home layout-full hidden">
       <h1 class="home__title">Sailor Scout Battle</h1>
       <div class="home__video-container">
         <video autoplay loop muted>
@@ -20,17 +20,17 @@
         </video>
       </div>
     </section>
-    <section class="board layout-full hidden">
+    <section class="board layout-full">
       <div class="board__video-container">
         <video autoplay loop muted>
           <source src="assets/videos/starry-sky-pastel.mp4" type="video/mp4" />
         </video>
       </div>
-      <section class="board__side">
-        <div class="board__side__icon">👩🏻</div>
-        <div class="board__side__players-text">Human</div>
-        <div data-win-type="human" class="board__side__wins-text">Wins:0</div>
-        <button class="board__side-btn">CHANGE GAME?</button>
+      <section class="board__players-side">
+        <div class="board__players-icon">👩🏻</div>
+        <div class="board__players-text">Human</div>
+        <div data-win-type="human" class="board__wins">Wins:0</div>
+        <button class="board__change-btn">CHANGE GAME?</button>
       </section>
       <section class="board__gameplay">
         <div class="board__header-wrapper">
@@ -40,23 +40,23 @@
         <div class="board__icon-container">
           <button data-icon-type="rock" class="board__icon-wrapper">
             <span>🪨</span>
-            <span class="board__user-select-icon hidden">👩🏻</span>
+            <span class="board__user-selection-icon hidden">👩🏻</span>
           </button>
 
           <button data-icon-type="paper" class="board__icon-wrapper">
             <span>📄</span>
-            <span class="board__user-select-icon hidden">👩🏻</span>
+            <span class="board__user-selection-icon hidden">👩🏻</span>
           </button>
           <button data-icon-type="scissors" class="board__icon-wrapper">
             <span>✂️</span>
-            <span class="board__user-select-icon hidden">👩🏻</span>
+            <span class="board__user-selection-icon hidden">👩🏻</span>
           </button>
         </div>
       </section>
-      <section class="board__side">
-        <div class="board__side__icon">💻</div>
-        <div class="board__side__players-text">Computer</div>
-        <div data-win-type="computer" class="board__side__wins-text">Wins:0</div>
+      <section class="board__players-side">
+        <div class="board__players-icon">💻</div>
+        <div class="board__players-text">Computer</div>
+        <div data-win-type="computer" class="board__wins">Wins:0</div>
       </section>
     </section>
 
