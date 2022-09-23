@@ -10,6 +10,7 @@ class Game {
     this.computerChoice = computerSelection
 
     if (userSelection === computerSelection) {
+      this.createGameSelection(userSelection, userSelection)
       return `💔 It's a draw! 💔`
     } else if (
       (userSelection === 'paper' && computerSelection === 'scissors') ||
@@ -28,5 +29,16 @@ class Game {
     for (var i = 0; i < choices.length; i++) {
       return choices[Math.floor(Math.random() * choices.length)]
     }
+  }
+
+    createGameSelection(id) {
+    var newGameSelection = document.createElement('div')
+    var newGameSelectionIcon = document.createElement('span')
+    newGameSelectionIcon.innerHTML = iconMap[id]
+    
+    newGameSelection.classList.add('board__icon-wrapper')
+    newGameSelection.dataset.iconType = id
+    newGameSelection.appendChild(newGameSelectionIcon)
+    return newGameSelection
   }
 }

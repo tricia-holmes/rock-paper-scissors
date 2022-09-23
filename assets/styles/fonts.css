@@ -3,3 +3,9 @@
   src: url('../fonts/powerpuff-girls-font.ttf') format('truetype');
   font-weight: 400;
 }
+
+@font-face {
+  font-family: 'Pixel';
+  src: url('../fonts/pixeloidMono-1G8ae.ttf') format('truetype');
+  font-weight: 400;
+}

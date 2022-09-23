@@ -1,82 +1,149 @@
 body,
 html {
   margin: 0px;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: var(--font-family);
+  user-select: none;
 }
 
 .hidden {
-  visibility: hidden;
+  display: none !important;
+}
+
+.layout-full {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.home {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__title {
+  text-align: center;
+  font-size: 70px;
+  color: white;
+  z-index: 1;
+}
+
+
+.home__video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.board__video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .board {
   width: 100vw;
   height: 100vh;
   display: flex;
+  position: absolute;
   justify-content: space-between;
+  z-index: 9999;
 }
 
-.board__center {
-  flex: 2.5;
-  background-color: #ea1f4c;
+.board__gameplay {
+  flex: 5;
+  background-color: rgba(0, 0, 139, 0.228);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 
-.board__center__title {
-  font-family: 'PowerpuffFont', serif;
+.board__header-wrapper {
+  position: absolute;
+  top: 64px;
+}
+
+.board__title {
   font-size: 70px;
   color: var(--font-color);
-  margin-bottom: -10px;
+  margin: 0px;
+  margin-bottom: 24px;
 }
 
-.board__center_text {
-  font-family: 'PowerpuffFont', serif;
+.board__subtitle {
   font-size: 30px;
   color: var(--font-color);
+  margin: 0px;
 }
 
-.board__center__icon-container {
+.board__icon-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-right: 200px;
-  margin-left: 200px;
+  box-sizing: border-box;
 }
 
-.board__center__icons {
+.board__icon-wrapper {
+  all: unset;
   font-size: 175px;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 24px;
 }
 
-.board__center-user-token {
+.board__user-select-icon {
   font-size: 50px;
-  position: relative;
-  top: -224px;
+  position: absolute;
+  bottom: -25px;
 }
 
 .board__side {
-  flex: 0.5;
-  text-align: center;
-  background-color: #ee648a;
+  background-color: rgba(102, 0, 139, 0.324);
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 64px;
 }
 
 .board__side__icon {
   font-size: 60px;
-  margin-bottom: -30px;
 }
 
 .board__side__players-text {
-  font-family: 'PowerpuffFont', serif;
   font-size: 30px;
   color: var(--font-color);
+  margin-bottom: 24px;
 }
 
 .board__side__wins-text {
-  font-family: 'PowerpuffFont', serif;
   font-size: 25px;
   color: var(--font-color);
 }
 
-.board__side__btn {
+.board__side-btn {
   all: unset;
   cursor: pointer;
   background-color: #ea1f4c;
@@ -84,5 +151,6 @@ html {
   font-size: 20px;
   width: 160px;
   padding: 18px;
-  margin-top: 70px;
+  position: absolute;
+  bottom: 24px;
 }
