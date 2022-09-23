@@ -9,7 +9,6 @@ var iconMap = {
 var user = new Player('User', iconMap.user)
 var computer = new Player('Computer', iconMap.computer)
 var game = new Game(user, computer)
-var result // need this to live in the game class
 
 // DOM Elements
 var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
@@ -22,12 +21,19 @@ var iconContainer = document.querySelector('.board__icon-container')
 window.addEventListener('load', createListenersForChoiceIcons)
 
 // Event Handlers
+function createListenersForChoiceIcons() {
+  for (var i = 0; i < choiceIcons.length; i++) {
+    choiceIcons[i].addEventListener('click', playGame)
+  }
+}
+
 function playGame(event) {
   var userSelection = event.currentTarget.dataset.iconType
-  result = game.playRound(userSelection)
   var drawIcon
 
-  if (result === `💔 It's a draw! 💔`) {
+  game.playRound(userSelection)
+
+  if (game.result === `💔 It's a draw! 💔`) {
     drawIcon = createDrawIcon(userSelection)
   }
 
@@ -36,6 +42,8 @@ function playGame(event) {
     resetBoard(drawIcon)
   }, 2200)
 }
+
+// Helper functions
 
 function createDrawIcon(userSelection) {
   var newDrawSection = document.createElement('div')
@@ -46,13 +54,6 @@ function createDrawIcon(userSelection) {
   newDrawSection.dataset.iconType = userSelection
   newDrawSection.appendChild(newDrawIcon)
   return newDrawSection
-}
-
-// Helper functions
-function createListenersForChoiceIcons() {
-  for (var i = 0; i < choiceIcons.length; i++) {
-    choiceIcons[i].addEventListener('click', playGame)
-  }
 }
 
 function show(element) {
@@ -102,7 +103,7 @@ function hideNonSelectedIcon(userSelection) {
   for (var i = 0; i < choiceIcons.length; i++) {
     if (
       choiceIcons[i].dataset.iconType !== userSelection &&
-      choiceIcons[i].dataset.iconType !== game.computerChoice
+      choiceIcons[i].dataset.iconType !== computer.currentChoice
     ) {
       hide(choiceIcons[i])
     }
@@ -116,7 +117,7 @@ function appendDrawIconSection(drawIcon) {
 }
 
 function showResultText() {
-  subtitle.innerText = result
+  subtitle.innerText = game.result
 }
 
 function resetBoard(drawIcon) {

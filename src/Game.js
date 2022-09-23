@@ -2,28 +2,31 @@ class Game {
   constructor(user, computer) {
     this.user = user
     this.computer = computer
-    this.computerChoice
     this.result
+    this.type
   }
 
   playRound(userSelection) {
-    var computerSelection = this.#getComputerChoice()
-    this.computerChoice = computerSelection
+    this.computer.takeTurn(this.#getRandomChoice())
+    this.user.takeTurn(userSelection)
 
-    if (userSelection === computerSelection) {
-      return `💔 It's a draw! 💔`
+    if (this.user.currentChoice === this.computer.currentChoice) {
+      this.result = `💔 It's a draw! 💔`
     } else if (
-      (userSelection === 'paper' && computerSelection === 'scissors') ||
-      (userSelection === 'scissors' && computerSelection === 'rock') ||
-      (userSelection === 'rock' && computerSelection === 'paper')
+      (this.user.currentChoice === 'paper' &&
+        this.computer.currentChoice === 'scissors') ||
+      (this.user.currentChoice === 'scissors' &&
+        this.computer.currentChoice === 'rock') ||
+      (this.user.currentChoice === 'rock' &&
+        this.computer.currentChoice === 'paper')
     ) {
-      return this.computer.addWin()
+      this.result = this.computer.addWin()
     } else {
-      return this.user.addWin()
+      this.result = this.user.addWin()
     }
   }
 
-  #getComputerChoice() {
+  #getRandomChoice() {
     var choices = ['rock', 'paper', 'scissors']
 
     for (var i = 0; i < choices.length; i++) {
