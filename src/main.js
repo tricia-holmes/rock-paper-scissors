@@ -9,7 +9,6 @@ var iconMap = {
 var user = new Player('User', iconMap.user)
 var computer = new Player('Computer', iconMap.computer)
 var game = new Game(user, computer)
-var userSelection // need this to live in the player class
 var result // need this to live in the game class
 
 // DOM Elements
@@ -24,7 +23,7 @@ window.addEventListener('load', createListenersForChoiceIcons)
 
 // Event Handlers
 function playGame(event) {
-  userSelection = event.currentTarget.dataset.iconType
+  var userSelection = event.currentTarget.dataset.iconType
   result = game.playRound(userSelection)
   var drawIcon
 
@@ -32,10 +31,21 @@ function playGame(event) {
     drawIcon = createDrawIcon(userSelection)
   }
 
-  displayGameRound(drawIcon)
+  displayGameRound(drawIcon, userSelection)
   setTimeout(function () {
     resetBoard(drawIcon)
   }, 2200)
+}
+
+function createDrawIcon(userSelection) {
+  var newDrawSection = document.createElement('div')
+  var newDrawIcon = document.createElement('span')
+  newDrawIcon.innerHTML = iconMap[userSelection]
+
+  newDrawSection.classList.add('board__icon-wrapper')
+  newDrawSection.dataset.iconType = userSelection
+  newDrawSection.appendChild(newDrawIcon)
+  return newDrawSection
 }
 
 // Helper functions
@@ -45,12 +55,37 @@ function createListenersForChoiceIcons() {
   }
 }
 
-function displayGameRound(drawIcon) {
-  showUserSelection()
-  setTimeout(updateWins, 500)
+function show(element) {
+  element.classList.remove('hidden')
+}
+
+function hide(element) {
+  element.classList.add('hidden')
+}
+
+function displayGameRound(drawIcon, userSelection) {
+  showUserSelection(userSelection)
   setTimeout(function () {
-    finishRound(drawIcon)
+    finishRound(drawIcon, userSelection)
   }, 700)
+}
+
+function showUserSelection(userSelection) {
+  for (var i = 0; i < choiceTokens.length; i++) {
+    if (
+      choiceTokens[i].closest('button[data-icon-type]').dataset.iconType ===
+      userSelection
+    ) {
+      show(choiceTokens[i])
+    }
+  }
+}
+
+function finishRound(drawIcon, userSelection) {
+  updateWins()
+  hideNonSelectedIcon(userSelection)
+  appendDrawIconSection(drawIcon)
+  showResultText()
 }
 
 function updateWins() {
@@ -63,32 +98,7 @@ function updateWins() {
   }
 }
 
-function show(element) {
-  element.classList.remove('hidden')
-}
-
-function showUserSelection() {
-  for (var i = 0; i < choiceTokens.length; i++) {
-    if (
-      choiceTokens[i].closest('button[data-icon-type]').dataset.iconType ===
-      userSelection
-    ) {
-      show(choiceTokens[i])
-    }
-  }
-}
-
-function hide(element) {
-  element.classList.add('hidden')
-}
-
-function hideUserSelection() {
-  for (var i = 0; i < choiceTokens.length; i++) {
-    hide(choiceTokens[i])
-  }
-}
-
-function hideNonSelectedIcon() {
+function hideNonSelectedIcon(userSelection) {
   for (var i = 0; i < choiceIcons.length; i++) {
     if (
       choiceIcons[i].dataset.iconType !== userSelection &&
@@ -105,18 +115,8 @@ function appendDrawIconSection(drawIcon) {
   }
 }
 
-function showResult() {
+function showResultText() {
   subtitle.innerText = result
-}
-
-function resetResult() {
-  subtitle.innerText = 'Choose your fighter!'
-}
-
-function finishRound(drawIcon) {
-  hideNonSelectedIcon()
-  appendDrawIconSection(drawIcon)
-  showResult()
 }
 
 function resetBoard(drawIcon) {
@@ -128,16 +128,15 @@ function resetBoard(drawIcon) {
     show(choiceIcons[i])
   }
   hideUserSelection()
-  resetResult()
+  resetResultText()
 }
 
-function createDrawIcon(userSelection) {
-  var newDrawSection = document.createElement('div')
-  var newDrawIcon = document.createElement('span')
-  newDrawIcon.innerHTML = iconMap[userSelection]
+function hideUserSelection() {
+  for (var i = 0; i < choiceTokens.length; i++) {
+    hide(choiceTokens[i])
+  }
+}
 
-  newDrawSection.classList.add('board__icon-wrapper')
-  newDrawSection.dataset.iconType = userSelection
-  newDrawSection.appendChild(newDrawIcon)
-  return newDrawSection
+function resetResultText() {
+  subtitle.innerText = 'Choose your fighter!'
 }
