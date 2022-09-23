@@ -1,10 +1,3 @@
-// DOM Elements
-var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
-var scores = document.querySelectorAll('.board__side__wins-text')
-var tagline = document.querySelector('.board__subtitle')
-var choiceTokens = document.querySelectorAll('.board__user-select-icon')
-var iconContainer = document.querySelector('.board__icon-container')
-
 // Global Variables
 var iconMap = {
   user: '👩🏻',
@@ -19,6 +12,14 @@ var game = new Game(user, computer)
 var userSelection
 var result
 
+// DOM Elements
+var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
+var scores = document.querySelectorAll('.board__side__wins-text')
+var tagline = document.querySelector('.board__subtitle')
+var choiceTokens = document.querySelectorAll('.board__user-select-icon')
+var iconContainer = document.querySelector('.board__icon-container')
+
+
 // Event listeners
 for (var i = 0; i < choiceIcons.length; i++) {
   choiceIcons[i].addEventListener('click', selectChoice)
@@ -31,7 +32,7 @@ function selectChoice(event) {
   var gameSelectionElem
 
   if (result === `💔 It's a draw! 💔`) {
-    gameSelectionElem = game.createGameSelection(userSelection)
+    gameSelectionElem = createGameSelection(userSelection)
   }
 
   showUserSelection()
@@ -43,6 +44,8 @@ function selectChoice(event) {
     resetBoard(gameSelectionElem)
   }, 2200)
 }
+
+// Helper functions
 
 function updateWins() {
   for (var i = 0; i < scores.length; i++) {
@@ -120,4 +123,15 @@ function resetBoard(tiedGameIcon) {
   }
   hideUserSelection()
   resetResult()
+}
+
+function createGameSelection(id) {
+  var newGameSelection = document.createElement('div')
+  var newGameSelectionIcon = document.createElement('span')
+  newGameSelectionIcon.innerHTML = iconMap[id]
+  
+  newGameSelection.classList.add('board__icon-wrapper')
+  newGameSelection.dataset.iconType = id
+  newGameSelection.appendChild(newGameSelectionIcon)
+  return newGameSelection
 }
