@@ -41,7 +41,14 @@ html {
 .home__classic-btn {
 position: absolute;
 bottom: 36px;
-  z-index: 2;
+z-index: 2;
+margin: 30px;
+}
+
+.home__difficult-btn {
+position: absolute;
+bottom: 36px;
+z-index: 3;
 }
 
 .home__video-container {
