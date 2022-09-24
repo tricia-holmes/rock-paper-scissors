@@ -20,6 +20,7 @@ var difficultBtn = document.querySelector('.home__difficult-btn')
 var changeBtn = document.querySelector('.board__change-btn')
 var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
 var scores = document.querySelectorAll('.board__wins')
+var boardTitle = document.querySelector('.board__title')
 var subtitle = document.querySelector('.board__subtitle')
 var choiceTokens = document.querySelectorAll('.board__user-selection-icon')
 var iconContainer = document.querySelector('.board__icon-container')
@@ -41,6 +42,7 @@ function createListenersForChoiceIcons() {
 
 function playClassicMode() {
   game.type = 'classic'
+  boardTitle.innerText = 'Classic Battle'
   showIconChoices()
   hide(homePage)
   show(gameBoard)
@@ -48,6 +50,7 @@ function playClassicMode() {
 
 function playDifficultMode() {
   game.type = 'difficult'
+  boardTitle.innerText = 'Difficult Battle'
   showIconChoices()
   hide(homePage)
   show(gameBoard)

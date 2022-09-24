@@ -198,7 +198,7 @@ html {
 }
 
 .board__players-side > button:hover {
-  background-color: rgba(80, 255, 252, 0.895);
+  background-color: rgba(80, 255, 252, 0.51);
   color: white;
   transition-timing-function: ease-in-out;
   transition: 500ms;
