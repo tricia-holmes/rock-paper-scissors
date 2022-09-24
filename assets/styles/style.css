@@ -39,16 +39,45 @@ html {
 }
 
 .home__classic-btn {
-position: absolute;
-bottom: 36px;
-z-index: 2;
-margin: 30px;
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  bottom: 36px;
+  z-index: 2;
+  margin-right: 600px;
+  padding: 20px;
+  height: 250px;
+  width: 400px;
+  background: rgba(192, 249, 255, 0.625);
+  text-align: center;
+  font-size: 25px;
+  border-radius: 35px;
 }
 
 .home__difficult-btn {
-position: absolute;
-bottom: 36px;
-z-index: 3;
+  cursor: pointer;
+  all: unset;
+  display: inline-block;
+  position: absolute;
+  bottom: 36px;
+  z-index: 3;
+  margin-left: 600px;
+  padding: 20px;
+  height: 250px;
+  width: 450px;
+  background: rgba(254, 255, 192, 0.625);
+  text-align: center;
+  align-self: center;
+  font-size: 25px;
+  border-radius: 35px;
+}
+
+.home > button:hover {
+  background-color: rgba(255, 80, 162, 0.895);
+  color: white;
+  transition-timing-function: ease-in-out;
+  transition: 500ms;
 }
 
 .home__video-container {
@@ -158,11 +187,19 @@ z-index: 3;
 .board__change-btn {
   all: unset;
   cursor: pointer;
-  background-color: #ea1f4c;
+  background-color: #631fea39;
   color: var(--font-color);
   font-size: 20px;
   width: 160px;
   padding: 18px;
   position: absolute;
   bottom: 24px;
+  border-radius: 20px;
+}
+
+.board__players-side > button:hover {
+  background-color: rgba(80, 255, 252, 0.895);
+  color: white;
+  transition-timing-function: ease-in-out;
+  transition: 500ms;
 }
