@@ -2,35 +2,50 @@ class Game {
   constructor(user, computer) {
     this.user = user
     this.computer = computer
-    this.result
+    this.winMap = {
+      rock: ['scissors', 'lizard'],
+      paper: ['rock', 'alien'],
+      scissors: ['paper', 'lizard'],
+      lizard: ['paper', 'alien'],
+      alien: ['scissors', 'rock'],
+    }
     this.type
+    this.result
   }
 
   playRound(userSelection) {
     this.computer.takeTurn(this.#getRandomChoice())
     this.user.takeTurn(userSelection)
+    console.log('COMPUTER', this.computer.currentChoice)
+    console.log('USER', this.user.currentChoice)
 
     if (this.user.currentChoice === this.computer.currentChoice) {
       this.result = `💔 It's a draw! 💔`
     } else if (
-      (this.user.currentChoice === 'paper' &&
-        this.computer.currentChoice === 'scissors') ||
-      (this.user.currentChoice === 'scissors' &&
-        this.computer.currentChoice === 'rock') ||
-      (this.user.currentChoice === 'rock' &&
-        this.computer.currentChoice === 'paper')
+      this.winMap[this.user.currentChoice].includes(this.computer.currentChoice)
     ) {
-      this.result = this.computer.addWin()
-    } else {
       this.result = this.user.addWin()
+    } else {
+      this.result = this.computer.addWin()
     }
+
+    console.log(this.result)
   }
 
   #getRandomChoice() {
-    var choices = ['rock', 'paper', 'scissors']
+    var classicChoices = ['rock', 'paper', 'scissors']
+    var difficultChoices = ['rock', 'paper', 'scissors', 'lizard', 'alien']
 
-    for (var i = 0; i < choices.length; i++) {
-      return choices[Math.floor(Math.random() * choices.length)]
+    if (this.type === 'classic')
+      for (var i = 0; i < classicChoices.length; i++) {
+        return classicChoices[Math.floor(Math.random() * classicChoices.length)]
+      }
+    else {
+      for (var i = 0; i < difficultChoices.length; i++) {
+        return difficultChoices[
+          Math.floor(Math.random() * difficultChoices.length)
+        ]
+      }
     }
   }
 }

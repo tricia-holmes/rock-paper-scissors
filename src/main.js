@@ -11,6 +11,9 @@ var computer = new Player('Computer', iconMap.computer)
 var game = new Game(user, computer)
 
 // DOM Elements
+var homePage = document.querySelector('[data-page-type="home"]')
+var gameBoard = document.querySelector('[data-page-type="game"]')
+var classicBtn = document.querySelector('.home__classic-btn')
 var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
 var scores = document.querySelectorAll('.board__wins')
 var subtitle = document.querySelector('.board__subtitle')
@@ -19,12 +22,19 @@ var iconContainer = document.querySelector('.board__icon-container')
 
 // Event listeners
 window.addEventListener('load', createListenersForChoiceIcons)
+classicBtn.addEventListener('click', playClassicMode)
 
 // Event Handlers
 function createListenersForChoiceIcons() {
   for (var i = 0; i < choiceIcons.length; i++) {
     choiceIcons[i].addEventListener('click', playGame)
   }
+}
+
+function playClassicMode() {
+  game.type = 'classic'
+  hide(homePage)
+  show(gameBoard)
 }
 
 function playGame(event) {
@@ -44,7 +54,6 @@ function playGame(event) {
 }
 
 // Helper functions
-
 function createDrawIcon(userSelection) {
   var newDrawSection = document.createElement('div')
   var newDrawIcon = document.createElement('span')

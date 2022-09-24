@@ -38,6 +38,11 @@ html {
   z-index: 1;
 }
 
+.home__classic-btn {
+position: absolute;
+bottom: 36px;
+  z-index: 2;
+}
 
 .home__video-container {
   position: absolute;
