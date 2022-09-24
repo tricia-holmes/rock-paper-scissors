@@ -9,43 +9,94 @@ var iconMap = {
 var user = new Player('User', iconMap.user)
 var computer = new Player('Computer', iconMap.computer)
 var game = new Game(user, computer)
-var userSelection
-var result
 
 // DOM Elements
+var homePage = document.querySelector('[data-page-type="home"]')
+var gameBoard = document.querySelector('[data-page-type="game"]')
+var classicBtn = document.querySelector('.home__classic-btn')
 var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
-var scores = document.querySelectorAll('.board__side__wins-text')
-var tagline = document.querySelector('.board__subtitle')
-var choiceTokens = document.querySelectorAll('.board__user-select-icon')
+var scores = document.querySelectorAll('.board__wins')
+var subtitle = document.querySelector('.board__subtitle')
+var choiceTokens = document.querySelectorAll('.board__user-selection-icon')
 var iconContainer = document.querySelector('.board__icon-container')
 
-
 // Event listeners
-for (var i = 0; i < choiceIcons.length; i++) {
-  choiceIcons[i].addEventListener('click', selectChoice)
-}
+window.addEventListener('load', createListenersForChoiceIcons)
+classicBtn.addEventListener('click', playClassicMode)
 
 // Event Handlers
-function selectChoice(event) {
-  userSelection = event.currentTarget.dataset.iconType
-  result = game.playRound(userSelection)
-  var gameSelectionElem
+function createListenersForChoiceIcons() {
+  for (var i = 0; i < choiceIcons.length; i++) {
+    choiceIcons[i].addEventListener('click', playGame)
+  }
+}
 
-  if (result === `💔 It's a draw! 💔`) {
-    gameSelectionElem = createGameSelection(userSelection)
+function playClassicMode() {
+  game.type = 'classic'
+  hide(homePage)
+  show(gameBoard)
+}
+
+function playGame(event) {
+  var userSelection = event.currentTarget.dataset.iconType
+  var drawIcon
+
+  game.playRound(userSelection)
+
+  if (game.result === `💔 It's a draw! 💔`) {
+    drawIcon = createDrawIcon(userSelection)
   }
 
-  showUserSelection()
-  setTimeout(updateWins,500)
+  displayGameRound(drawIcon, userSelection)
   setTimeout(function () {
-    finishRound(gameSelectionElem)
-  }, 700)
-  setTimeout(function () {
-    resetBoard(gameSelectionElem)
+    resetBoard(drawIcon)
   }, 2200)
 }
 
 // Helper functions
+function createDrawIcon(userSelection) {
+  var newDrawSection = document.createElement('div')
+  var newDrawIcon = document.createElement('span')
+  newDrawIcon.innerHTML = iconMap[userSelection]
+
+  newDrawSection.classList.add('board__icon-wrapper')
+  newDrawSection.dataset.iconType = userSelection
+  newDrawSection.appendChild(newDrawIcon)
+  return newDrawSection
+}
+
+function show(element) {
+  element.classList.remove('hidden')
+}
+
+function hide(element) {
+  element.classList.add('hidden')
+}
+
+function displayGameRound(drawIcon, userSelection) {
+  showUserSelection(userSelection)
+  setTimeout(function () {
+    finishRound(drawIcon, userSelection)
+  }, 700)
+}
+
+function showUserSelection(userSelection) {
+  for (var i = 0; i < choiceTokens.length; i++) {
+    if (
+      choiceTokens[i].closest('button[data-icon-type]').dataset.iconType ===
+      userSelection
+    ) {
+      show(choiceTokens[i])
+    }
+  }
+}
+
+function finishRound(drawIcon, userSelection) {
+  updateWins()
+  hideNonSelectedIcon(userSelection)
+  appendDrawIconSection(drawIcon)
+  showResultText()
+}
 
 function updateWins() {
   for (var i = 0; i < scores.length; i++) {
@@ -57,23 +108,37 @@ function updateWins() {
   }
 }
 
-function show(element) {
-  element.classList.remove('hidden')
-}
-
-function showUserSelection() {
-  for (var i = 0; i < choiceTokens.length; i++) {
+function hideNonSelectedIcon(userSelection) {
+  for (var i = 0; i < choiceIcons.length; i++) {
     if (
-      choiceTokens[i].closest('button[data-icon-type]').dataset.iconType ===
-      userSelection
+      choiceIcons[i].dataset.iconType !== userSelection &&
+      choiceIcons[i].dataset.iconType !== computer.currentChoice
     ) {
-      show(choiceTokens[i])
+      hide(choiceIcons[i])
     }
   }
 }
 
-function hide(element) {
-  element.classList.add('hidden')
+function appendDrawIconSection(drawIcon) {
+  if (drawIcon) {
+    iconContainer.appendChild(drawIcon)
+  }
+}
+
+function showResultText() {
+  subtitle.innerText = game.result
+}
+
+function resetBoard(drawIcon) {
+  if (drawIcon) {
+    drawIcon.remove()
+  }
+
+  for (var i = 0; i < choiceIcons.length; i++) {
+    show(choiceIcons[i])
+  }
+  hideUserSelection()
+  resetResultText()
 }
 
 function hideUserSelection() {
@@ -82,56 +147,6 @@ function hideUserSelection() {
   }
 }
 
-function hideNonSelectedIcon() {
-  for (var i = 0; i < choiceIcons.length; i++) {
-    if (
-      choiceIcons[i].dataset.iconType !== userSelection &&
-      choiceIcons[i].dataset.iconType !== game.computerChoice
-    ) {
-      hide(choiceIcons[i])
-    }
-  }
-}
-
-function appendGameSelection(gameSelection) {
-  if (gameSelection) {
-    iconContainer.appendChild(gameSelection)
-  }
-}
-
-function showResult() {
-  tagline.innerText = result
-}
-
-function resetResult() {
-  tagline.innerText = 'Choose your fighter!'
-}
-
-function finishRound(gameSelection) {
-  hideNonSelectedIcon()
-  appendGameSelection(gameSelection)
-  showResult()
-}
-
-function resetBoard(tiedGameIcon) {
-  if (tiedGameIcon) {
-    tiedGameIcon.remove()
-  }
-
-  for (var i = 0; i < choiceIcons.length; i++) {
-    show(choiceIcons[i])
-  }
-  hideUserSelection()
-  resetResult()
-}
-
-function createGameSelection(id) {
-  var newGameSelection = document.createElement('div')
-  var newGameSelectionIcon = document.createElement('span')
-  newGameSelectionIcon.innerHTML = iconMap[id]
-  
-  newGameSelection.classList.add('board__icon-wrapper')
-  newGameSelection.dataset.iconType = id
-  newGameSelection.appendChild(newGameSelectionIcon)
-  return newGameSelection
+function resetResultText() {
+  subtitle.innerText = 'Choose your fighter!'
 }

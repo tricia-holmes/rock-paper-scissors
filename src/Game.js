@@ -2,32 +2,50 @@ class Game {
   constructor(user, computer) {
     this.user = user
     this.computer = computer
-    this.computerChoice
+    this.winMap = {
+      rock: ['scissors', 'lizard'],
+      paper: ['rock', 'alien'],
+      scissors: ['paper', 'lizard'],
+      lizard: ['paper', 'alien'],
+      alien: ['scissors', 'rock'],
+    }
+    this.type
     this.result
   }
 
   playRound(userSelection) {
-    var computerSelection = this.#getComputerChoice()
-    this.computerChoice = computerSelection
+    this.computer.takeTurn(this.#getRandomChoice())
+    this.user.takeTurn(userSelection)
+    console.log('COMPUTER', this.computer.currentChoice)
+    console.log('USER', this.user.currentChoice)
 
-    if (userSelection === computerSelection) {
-      return `💔 It's a draw! 💔`
+    if (this.user.currentChoice === this.computer.currentChoice) {
+      this.result = `💔 It's a draw! 💔`
     } else if (
-      (userSelection === 'paper' && computerSelection === 'scissors') ||
-      (userSelection === 'scissors' && computerSelection === 'rock') ||
-      (userSelection === 'rock' && computerSelection === 'paper')
+      this.winMap[this.user.currentChoice].includes(this.computer.currentChoice)
     ) {
-      return this.computer.addWin()
+      this.result = this.user.addWin()
     } else {
-      return this.user.addWin()
+      this.result = this.computer.addWin()
     }
+
+    console.log(this.result)
   }
 
-  #getComputerChoice() {
-    var choices = ['rock', 'paper', 'scissors']
+  #getRandomChoice() {
+    var classicChoices = ['rock', 'paper', 'scissors']
+    var difficultChoices = ['rock', 'paper', 'scissors', 'lizard', 'alien']
 
-    for (var i = 0; i < choices.length; i++) {
-      return choices[Math.floor(Math.random() * choices.length)]
+    if (this.type === 'classic')
+      for (var i = 0; i < classicChoices.length; i++) {
+        return classicChoices[Math.floor(Math.random() * classicChoices.length)]
+      }
+    else {
+      for (var i = 0; i < difficultChoices.length; i++) {
+        return difficultChoices[
+          Math.floor(Math.random() * difficultChoices.length)
+        ]
+      }
     }
   }
 }
