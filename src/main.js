@@ -5,6 +5,8 @@ var iconMap = {
   rock: '🪨',
   scissors: '✂️',
   paper: '📄',
+  lizard: '🦎',
+  alien: '👾'
 }
 var user = new Player('User', iconMap.user)
 var computer = new Player('Computer', iconMap.computer)
@@ -14,15 +16,22 @@ var game = new Game(user, computer)
 var homePage = document.querySelector('[data-page-type="home"]')
 var gameBoard = document.querySelector('[data-page-type="game"]')
 var classicBtn = document.querySelector('.home__classic-btn')
+var difficultBtn = document.querySelector('.home__difficult-btn')
+var changeBtn = document.querySelector('.board__change-btn')
 var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
 var scores = document.querySelectorAll('.board__wins')
+var boardTitle = document.querySelector('.board__title')
 var subtitle = document.querySelector('.board__subtitle')
 var choiceTokens = document.querySelectorAll('.board__user-selection-icon')
 var iconContainer = document.querySelector('.board__icon-container')
+var lizard = document.querySelector('[data-icon-type="lizard"]')
+var alien = document.querySelector('[data-icon-type="alien"]')
 
 // Event listeners
 window.addEventListener('load', createListenersForChoiceIcons)
 classicBtn.addEventListener('click', playClassicMode)
+difficultBtn.addEventListener('click', playDifficultMode)
+changeBtn.addEventListener('click', goToHome)
 
 // Event Handlers
 function createListenersForChoiceIcons() {
@@ -33,6 +42,16 @@ function createListenersForChoiceIcons() {
 
 function playClassicMode() {
   game.type = 'classic'
+  boardTitle.innerText = 'Classic Battle'
+  showIconChoices()
+  hide(homePage)
+  show(gameBoard)
+}
+
+function playDifficultMode() {
+  game.type = 'difficult'
+  boardTitle.innerText = 'Difficult Battle'
+  showIconChoices()
   hide(homePage)
   show(gameBoard)
 }
@@ -51,6 +70,13 @@ function playGame(event) {
   setTimeout(function () {
     resetBoard(drawIcon)
   }, 2200)
+}
+
+function goToHome() {
+  show(homePage)
+  hide(gameBoard)
+  hide(lizard)
+  hide(alien)
 }
 
 // Helper functions
@@ -134,11 +160,21 @@ function resetBoard(drawIcon) {
     drawIcon.remove()
   }
 
-  for (var i = 0; i < choiceIcons.length; i++) {
-    show(choiceIcons[i])
-  }
+  showIconChoices()
   hideUserSelection()
   resetResultText()
+}
+
+function showIconChoices() {
+  if (game.type === 'classic') {
+    for (var i = 0; i < 3; i++) {
+      show(choiceIcons[i])
+    }
+  } else if (game.type === 'difficult') {
+    for (var i = 0; i < choiceIcons.length; i++) {
+      show(choiceIcons[i])
+    }
+  }
 }
 
 function hideUserSelection() {

@@ -13,8 +13,22 @@
   </head>
   <body>
     <section data-page-type="home" class="home layout-full">
-      <button class="home__classic-btn">Classic Mode</button>
-      <h1 class="home__title">Sailor Scout Battle</h1>
+      <button class="home__classic-btn">
+        <span>🪨 CLASSIC ✂️</span><br /><br />
+        <span>rock > scissors</span><br />
+        <span>paper > rock</span><br />
+        <span>scissors > paper</span><br />
+        <span></span><br />
+      </button>
+      <button class="home__difficult-btn">
+        <span>🦎 DIFFICULT 👾</span><br /><br />
+        <span>rock > scissors & lizard</span><br />
+        <span>paper > rock & alien</span><br />
+        <span>scissors > paper & lizard</span><br />
+        <span>lizard > paper & alien</span><br />
+        <span>alien > scissors & rock</span><br />
+      </button>
+      <h1 class="home__title">Rock, Paper, Scissors</h1>
       <div class="home__video-container">
         <video autoplay loop muted>
           <source src="assets/videos/starry-sky-blue.mp4" type="video/mp4" />
@@ -43,13 +57,20 @@
             <span>🪨</span>
             <span class="board__user-selection-icon hidden">👩🏻</span>
           </button>
-
           <button data-icon-type="paper" class="board__icon-wrapper">
             <span>📄</span>
             <span class="board__user-selection-icon hidden">👩🏻</span>
           </button>
           <button data-icon-type="scissors" class="board__icon-wrapper">
             <span>✂️</span>
+            <span class="board__user-selection-icon hidden">👩🏻</span>
+          </button>
+          <button data-icon-type="lizard" class="board__icon-wrapper hidden">
+            <span>🦎</span>
+            <span class="board__user-selection-icon hidden">👩🏻</span>
+          </button>
+          <button data-icon-type="alien" class="board__icon-wrapper hidden">
+            <span>👾</span>
             <span class="board__user-selection-icon hidden">👩🏻</span>
           </button>
         </div>
