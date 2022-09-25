@@ -9,6 +9,7 @@
     <!-- CSS Scripts -->
     <link rel="stylesheet" href="assets/styles/fonts.css" />
     <link rel="stylesheet" href="assets/styles/variables.css" />
+    <link rel="stylesheet" href="assets/styles/sprites.css" />
     <link rel="stylesheet" href="assets/styles/style.css" />
   </head>
   <body>
@@ -42,7 +43,7 @@
         </video>
       </div>
       <section class="board__players-side">
-        <div class="board__players-icon">👩🏻</div>
+        <div class="board__players-icon">🌙</div>
         <div class="board__players-text">Human</div>
         <div data-win-type="human" class="board__wins">Wins:0</div>
         <button class="board__change-btn">CHANGE GAME?</button>
@@ -52,31 +53,11 @@
           <h1 class="board__title">Classic Battle</h1>
           <h2 class="board__subtitle">Choose your fighter!</h2>
         </div>
-        <div class="board__icon-container">
-          <button data-icon-type="rock" class="board__icon-wrapper">
-            <span>🪨</span>
-            <span class="board__user-selection-icon hidden">👩🏻</span>
-          </button>
-          <button data-icon-type="paper" class="board__icon-wrapper">
-            <span>📄</span>
-            <span class="board__user-selection-icon hidden">👩🏻</span>
-          </button>
-          <button data-icon-type="scissors" class="board__icon-wrapper">
-            <span>✂️</span>
-            <span class="board__user-selection-icon hidden">👩🏻</span>
-          </button>
-          <button data-icon-type="lizard" class="board__icon-wrapper hidden">
-            <span>🦎</span>
-            <span class="board__user-selection-icon hidden">👩🏻</span>
-          </button>
-          <button data-icon-type="alien" class="board__icon-wrapper hidden">
-            <span>👾</span>
-            <span class="board__user-selection-icon hidden">👩🏻</span>
-          </button>
-        </div>
+        <div class="board__icon-container"></div>
       </section>
       <section class="board__players-side">
-        <div class="board__players-icon">💻</div>
+        </div>
+        <div class="board__players-icon">👾</div>
         <div class="board__players-text">Computer</div>
         <div data-win-type="computer" class="board__wins">Wins:0</div>
       </section>

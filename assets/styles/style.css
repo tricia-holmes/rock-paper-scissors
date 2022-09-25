@@ -106,7 +106,7 @@ html {
 .board__gameplay {
   flex: 5;
   background-color: rgba(0, 0, 139, 0.228);
-  text-align: center;
+  /* text-align: center; */
   display: flex;
   align-items: center;
   justify-content: center;

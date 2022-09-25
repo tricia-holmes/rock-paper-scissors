@@ -3,11 +3,11 @@ class Player {
     this.name = name
     this.token = token
     this.wins = 0
-    this.currentChoice
+    this.currentFighter
   }
 
   takeTurn(selection) {
-    this.currentChoice = selection
+    this.currentFighter = selection
   }
 
   addWin() {
