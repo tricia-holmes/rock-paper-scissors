@@ -56,6 +56,11 @@
     forwards;
 }
 
+.attack-frame-mode {
+  animation: moveSpritesheetHoldLastFrame 1.2s steps(calc(var(--anim-num) - 1))
+    forwards 2;
+}
+
 @keyframes moveSpritesheet {
   from {
     transform: translate3d(0, 0, 0);

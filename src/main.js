@@ -40,7 +40,7 @@ function playGame(event) {
   displayGameRound()
   setTimeout(function () {
     resetBoard()
-  }, 2200)
+  }, 5000)
 }
 
 function goToHome() {
@@ -81,12 +81,35 @@ function updateWins() {
 
 function displaySelectedFighter() {
   removeAllFighters()
-  addFighter(user.currentFighter)
-  addFighter(computer.currentFighter, true)
+  var userFighter = addFighter(user.currentFighter)
+  var computerFighter = addFighter(computer.currentFighter, true)
+
+  if (!game.result.winner) {
+    return
+  }
+
+  if (game.result.winner === 'user') {
+    userFighter.className =
+      'Character_spritesheet  attack-frame-mode pixelart sm-anim-attack'
+    computerFighter.className =
+      'Character_spritesheet pixelart hold-last-frame sm-anim-defeat'
+    console.log(userFighter.className)
+    setTimeout(function () {
+      setVictory(userFighter)
+    }, 2100)
+  } else {
+    userFighter.className =
+      'Character_spritesheet pixelart hold-last-frame sm-anim-defeat'
+    computerFighter.className =
+      'Character_spritesheet attack-frame-mode pixelart sm-anim-attack'
+    setTimeout(function () {
+      setVictory(computerFighter)
+    }, 2100)
+  }
 }
 
 function showResultText() {
-  subtitle.innerText = game.result
+  subtitle.innerText = game.result.text
 }
 
 function resetBoard() {
@@ -118,7 +141,7 @@ function addFighter(fighter, reverseCharacter) {
 
   spriteContainer.dataset.iconType = fighter
   spriteContainer.classList.add('Character')
-  spriteImg.src = 'assets/images/mercury-sprites.png'
+  spriteImg.src = 'assets/images/mercury-sprites-final.png'
 
   if (reverseCharacter) {
     spriteContainer.classList.add('reverse-character')
@@ -128,10 +151,16 @@ function addFighter(fighter, reverseCharacter) {
 
   spriteContainer.appendChild(spriteImg)
   boardContainer.appendChild(spriteContainer)
+
+  return spriteImg
 }
 
 function removeAllFighters() {
   while (boardContainer.firstChild) {
     boardContainer.removeChild(boardContainer.firstChild)
   }
+}
+
+function setVictory(winner) {
+  winner.className = 'Character_spritesheet pixelart sm-anim-victory'
 }

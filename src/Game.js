@@ -22,13 +22,13 @@ class Game {
     console.log('USER', this.user.currentFighter)
 
     if (this.user.currentFighter === this.computer.currentFighter) {
-      this.result = `💔 It's a draw! 💔`
+      this.result = {text:`💔 It's a draw! 💔`}
     } else if (
       this.winMap[this.user.currentFighter].includes(this.computer.currentFighter)
     ) {
-      this.result = this.user.addWin()
+      this.result = {winner: 'user', text: this.user.addWin()}
     } else {
-      this.result = this.computer.addWin()
+      this.result = {winner: 'computer', text:this.computer.addWin()}
     }
 
     console.log(this.result)
