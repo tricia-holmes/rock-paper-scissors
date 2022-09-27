@@ -43,3 +43,20 @@ I created a rock, paper, scissors game with a `Sailor Moon` themed twist called 
 - If a player chooses to play `difficult` mode, they will be taken to the difficult game page (pastel purple blue background) and see `five fighters` for their battle. 
 
 - The game is setup the same as `classic` with more fighters to choose from and more outcomes to happen.
+
+- Just like with `classic`, a player can go back to the `home page` using the `Change Game?` button on the bottom right hand side. 
+
+# Installation Instructions
+
+- `Fork` this repo to your own Github account
+- `Clone` the repository to your local machine
+- `cd` into the repo
+- View the project in the browser by running `open index.html` in your terminal
+
+*You can also see it here at this link: ``*
+
+# Preview of App:
+
+https://user-images.githubusercontent.com/108706408/192657442-be388ddf-3ea6-4070-a26d-620da04ba939.mp4
+
+
