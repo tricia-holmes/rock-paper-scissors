@@ -1,11 +1,12 @@
 // Global Variables
-var user = new Player('User', '🌙')
+var user = new Player('Human', '🌙')
 var computer = new Player('Computer', '👾')
 var game = new Game(user, computer)
+var song = new Audio('assets/music/Sailor Moon Theme (8 Bit Version).mp3')
 
 var sailorMap = {
   moon: {
-    spriteImg: 'assets/images/moon-sprites-test.png',
+    spriteImg: 'assets/images/moon-sprites.png',
     idle: `Character_spritesheet pixelart scout-anim-idle`,
     attack:
       'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
@@ -13,7 +14,7 @@ var sailorMap = {
     victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
   },
   mercury: {
-    spriteImg: 'assets/images/mercury-sprites-test.png',
+    spriteImg: 'assets/images/mercury-sprites.png',
     idle: `Character_spritesheet pixelart scout-anim-idle`,
     attack:
       'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
@@ -21,7 +22,7 @@ var sailorMap = {
     victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
   },
   mars: {
-    spriteImg: 'assets/images/mars-sprites-test.png',
+    spriteImg: 'assets/images/mars-sprites.png',
     idle: `Character_spritesheet pixelart scout-anim-idle`,
     attack:
       'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
@@ -37,7 +38,7 @@ var sailorMap = {
     victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
   },
   venus: {
-    spriteImg: 'assets/images/venus-sprites-test.png',
+    spriteImg: 'assets/images/venus-sprites.png',
     idle: `Character_spritesheet pixelart scout-anim-idle`,
     attack:
       'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
@@ -50,9 +51,10 @@ var sailorMap = {
 var homePage = document.querySelector('[data-page-type="home"]')
 var gameBoard = document.querySelector('[data-page-type="game"]')
 var boardVideo = document.querySelector('[data-video-type="game"]')
-var classicBtn = document.querySelector('.home__classic-btn')
-var difficultBtn = document.querySelector('.home__difficult-btn')
-var changeBtn = document.querySelector('.board__change-btn')
+var classicBtn = document.querySelector('#play-classic-btn')
+var difficultBtn = document.querySelector('#play-difficult-btn')
+var changeBtn = document.querySelector('#change-game-btn')
+var playersSide = document.querySelectorAll('.board__players-side')
 var boardContainer = document.querySelector('.board__icon-container')
 var scores = document.querySelectorAll('.board__wins')
 var boardTitle = document.querySelector('.board__title')
@@ -60,23 +62,37 @@ var subtitle = document.querySelector('.board__subtitle')
 var iconContainer = document.querySelector('.board__icon-container')
 
 // Event listeners
-// window.addEventListener('click', playSong)
+window.addEventListener('click', playSong)
 classicBtn.addEventListener('click', function () {
-  chooseGame('classic', 'Classic Battle', 'assets/videos/starry-sky-purple.mp4')
+  chooseGame(
+    'classic',
+    'Classic Battle',
+    'assets/videos/starry-sky-purple.mp4',
+    'rgba(102, 0, 139, 0.324)'
+  )
 })
 difficultBtn.addEventListener('click', function () {
   chooseGame(
     'difficult',
     'Difficult Battle',
-    'assets/videos/starry-sky-pastel.mp4'
+    'assets/videos/starry-sky-pastel.mp4',
+    '#b28dfb6e'
   )
 })
 changeBtn.addEventListener('click', goToHome)
 
-function chooseGame(type, title, backgroundVideo) {
+// Event Handlers
+function playSong() {
+  song.volume = 0.3
+  song.play()
+}
+
+function chooseGame(type, title, backgroundVideo, color) {
   game.type = type
   boardTitle.innerText = title
   boardVideo.src = backgroundVideo
+  playersSide[0].style.backgroundColor = color
+  playersSide[1].style.backgroundColor = color
   createFighters()
   hide(homePage)
   show(gameBoard)
@@ -92,12 +108,10 @@ function playGame(event) {
     setTimeout(function () {
       resetBoard()
     }, 2500)
-    console.log('TIME 2500')
   } else {
     setTimeout(function () {
       resetBoard()
     }, 4200)
-    console.log('TIME 4250')
   }
 }
 
@@ -149,7 +163,6 @@ function displaySelectedFighter() {
   if (game.result.winner === 'user') {
     userFighter.className = sailorMap[user.currentFighter].attack
     computerFighter.className = sailorMap[computer.currentFighter].defeat
-    console.log(userFighter.className)
     setTimeout(function () {
       setVictory(userFighter)
     }, 1700)
@@ -160,6 +173,10 @@ function displaySelectedFighter() {
       setVictory(computerFighter)
     }, 1700)
   }
+}
+
+function setVictory(winner) {
+  winner.className = sailorMap[game.result.winningFighter].victory
 }
 
 function showResultText() {
@@ -215,14 +232,3 @@ function removeAllFighters() {
     boardContainer.removeChild(boardContainer.firstChild)
   }
 }
-
-function setVictory(winner) {
-  winner.className = sailorMap[game.result.winningFighter].victory
-}
-
-var song = new Audio('assets/music/Sailor Moon Theme (8 Bit Version).mp3')
-
-// function playSong() {
-//   song.volume = 0.5
-//   song.play()
-// }

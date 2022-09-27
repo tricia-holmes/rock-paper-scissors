@@ -11,25 +11,27 @@
     <link rel="stylesheet" href="assets/styles/variables.css" />
     <link rel="stylesheet" href="assets/styles/sprites.css" />
     <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <section data-page-type="home" class="home layout-full">
-      <button class="home__classic-btn">
-        <span>🪨 CLASSIC ✂️</span><br /><br />
-        <span>rock > scissors</span><br />
-        <span>paper > rock</span><br />
-        <span>scissors > paper</span><br />
-        <span></span><br />
-      </button>
-      <button class="home__difficult-btn">
-        <span>🦎 DIFFICULT 👾</span><br /><br />
-        <span>rock > scissors & lizard</span><br />
-        <span>paper > rock & alien</span><br />
-        <span>scissors > paper & lizard</span><br />
-        <span>lizard > paper & alien</span><br />
-        <span>alien > scissors & rock</span><br />
-      </button>
       <h1 class="home__title">Sailor Scout Battle</h1>
+      <div class="home__btn-wrapper">
+        <button id="play-classic-btn" class="primary-btn">
+          <span>CLASSIC</span>
+          <span class="pixel-border-top"></span>
+          <span class="pixel-border-right"></span>
+          <span class="pixel-border-left"></span>
+          <span class="pixel-border-bottom"></span>
+        </button>
+        <button id="play-difficult-btn" class="primary-btn">
+          <span>DIFFICULT</span>
+          <span class="pixel-border-top"></span>
+          <span class="pixel-border-right"></span>
+          <span class="pixel-border-left"></span>
+          <span class="pixel-border-bottom"></span>
+        </button>
+      </div>
       <div class="home__video-container">
         <video autoplay loop muted>
           <source src="assets/videos/starry-sky-blue.mp4" type="video/mp4" />
@@ -46,7 +48,14 @@
         <div class="board__players-icon">🌙</div>
         <div class="board__players-text">Human</div>
         <div data-win-type="human" class="board__wins">Wins:0</div>
-        <button class="board__change-btn">CHANGE GAME?</button>
+        <button id="change-game-btn" class="primary-btn primary-btn--small">
+          <span>CHANGE</span>
+          <span>GAME?</span>
+          <span class="pixel-border-top"></span>
+          <span class="pixel-border-right"></span>
+          <span class="pixel-border-left"></span>
+          <span class="pixel-border-bottom"></span>
+        </button>
       </section>
       <section class="board__gameplay">
         <div class="board__header-wrapper">
@@ -56,7 +65,6 @@
         <div class="board__icon-container"></div>
       </section>
       <section class="board__players-side">
-        </div>
         <div class="board__players-icon">👾</div>
         <div class="board__players-text">Computer</div>
         <div data-win-type="computer" class="board__wins">Wins:0</div>

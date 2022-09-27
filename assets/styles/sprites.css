@@ -1,5 +1,5 @@
 :root {
-  --pixel-size: 4;
+  --pixel-size: 3.5;
   --anim-num: 9;
 }
 
@@ -9,7 +9,6 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 2px;
-  padding-left: 1px;
   box-sizing: border-box;
   cursor: pointer;
 }
@@ -20,7 +19,6 @@
 
 .pixelart {
   image-rendering: pixelated;
-  /* transform: scale(-1); */
 }
 
 .Character_spritesheet {
@@ -31,23 +29,9 @@
   pointer-events: none;
 }
 
-.Mercury-Character_spritesheet {
-  animation: moveMercurySpritesheet 1.2s steps(var(--anim-num)) forwards
-    infinite;
-  height: calc(224 * var(--pixel-size));
-  width: calc(780px * var(--pixel-size));
-  position: absolute;
-  pointer-events: none;
-}
-
 .scout-anim-attack {
   top: 0px;
   --anim-num: 9;
-}
-
-.mercury-anim-attack {
-  top: 0px;
-  --anim-num: 10;
 }
 
 .scout-anim-victory {
@@ -79,7 +63,6 @@
   animation: moveSpritesheet 1.2s steps(var(--anim-num)) forwards 1;
 }
 
-
 @keyframes moveSpritesheet {
   from {
     transform: translate3d(0, 0, 0);
@@ -90,22 +73,16 @@
   }
 }
 
-@keyframes moveMercurySpritesheet {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(calc((var(--anim-num) * -10%)), 0, 0);
-  }
-}
-
 @keyframes moveSpritesheetHoldLastFrame {
   from {
     transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translate3d(calc(((var(--anim-num) - 1) * -11.111111111%)), 0, 0);
+    transform: translate3d(
+      calc(((var(--anim-num) - 1) * -11.111111111%)),
+      0,
+      0
+    );
   }
 }

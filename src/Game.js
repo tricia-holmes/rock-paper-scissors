@@ -18,20 +18,26 @@ class Game {
   playRound(userSelection) {
     this.computer.takeTurn(this.#getRandomChoice())
     this.user.takeTurn(userSelection)
-    console.log('COMPUTER', this.computer.currentFighter)
-    console.log('USER', this.user.currentFighter)
 
     if (this.user.currentFighter === this.computer.currentFighter) {
-      this.result = {text:`💔 It's a draw! 💔`}
+      this.result = { text: `💔 It's a draw! 💔` }
     } else if (
-      this.winMap[this.user.currentFighter].includes(this.computer.currentFighter)
+      this.winMap[this.user.currentFighter].includes(
+        this.computer.currentFighter
+      )
     ) {
-      this.result = {winner: 'user', text: this.user.addWin(), winningFighter: this.user.currentFighter}
+      this.result = {
+        winner: 'user',
+        text: this.user.addWin(),
+        winningFighter: this.user.currentFighter,
+      }
     } else {
-      this.result = {winner: 'computer', text:this.computer.addWin(), winningFighter: this.computer.currentFighter}
+      this.result = {
+        winner: 'computer',
+        text: this.computer.addWin(),
+        winningFighter: this.computer.currentFighter,
+      }
     }
-
-    console.log(this.result)
   }
 
   #getRandomChoice() {
