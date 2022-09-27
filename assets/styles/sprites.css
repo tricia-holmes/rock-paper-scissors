@@ -5,7 +5,7 @@
 
 .Character {
   width: calc(78px * var(--pixel-size));
-  height: calc(54px * var(--pixel-size));
+  height: calc(66px * var(--pixel-size));
   overflow: hidden;
   position: relative;
   margin-bottom: 2px;
@@ -18,37 +18,51 @@
   transform: scaleX(-1);
 }
 
+.pixelart {
+  image-rendering: pixelated;
+  /* transform: scale(-1); */
+}
+
 .Character_spritesheet {
   animation: moveSpritesheet 1.2s steps(var(--anim-num)) forwards infinite;
   height: calc(216 * var(--pixel-size));
+  width: calc(702px * var(--pixel-size));
+  position: absolute;
+  pointer-events: none;
+}
+
+.Mercury-Character_spritesheet {
+  animation: moveMercurySpritesheet 1.2s steps(var(--anim-num)) forwards
+    infinite;
+  height: calc(224 * var(--pixel-size));
   width: calc(780px * var(--pixel-size));
   position: absolute;
   pointer-events: none;
 }
 
-.pixelart {
-  image-rendering: pixelated;
-  transform: scale(-1);
+.scout-anim-attack {
+  top: 0px;
+  --anim-num: 9;
 }
 
-.sm-anim-attack {
+.mercury-anim-attack {
   top: 0px;
   --anim-num: 10;
 }
 
-.sm-anim-victory {
-  --anim-num: 9;
-  top: calc(-54px * var(--pixel-size));
-}
-
-.sm-anim-idle {
-  --anim-num: 6;
-  top: calc(-54px * 2 * var(--pixel-size));
-}
-
-.sm-anim-defeat {
+.scout-anim-victory {
   --anim-num: 8;
-  top: calc(-54px * 3 * var(--pixel-size));
+  top: calc(-66px * var(--pixel-size));
+}
+
+.scout-anim-idle {
+  --anim-num: 6;
+  top: calc(-66px * 2 * var(--pixel-size));
+}
+
+.scout-anim-defeat {
+  --anim-num: 8;
+  top: calc(-66px * 3 * var(--pixel-size));
 }
 
 .hold-last-frame {
@@ -58,10 +72,25 @@
 
 .attack-frame-mode {
   animation: moveSpritesheetHoldLastFrame 1.2s steps(calc(var(--anim-num) - 1))
-    forwards 2;
+    forwards 1;
 }
 
+.play-once-mode {
+  animation: moveSpritesheet 1.2s steps(var(--anim-num)) forwards 1;
+}
+
+
 @keyframes moveSpritesheet {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc((var(--anim-num) * -11.111111111%)), 0, 0);
+  }
+}
+
+@keyframes moveMercurySpritesheet {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -77,6 +106,6 @@
   }
 
   to {
-    transform: translate3d(calc(((var(--anim-num) - 1) * -10%)), 0, 0);
+    transform: translate3d(calc(((var(--anim-num) - 1) * -11.111111111%)), 0, 0);
   }
 }

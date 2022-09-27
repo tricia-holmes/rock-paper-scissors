@@ -26,9 +26,9 @@ class Game {
     } else if (
       this.winMap[this.user.currentFighter].includes(this.computer.currentFighter)
     ) {
-      this.result = {winner: 'user', text: this.user.addWin()}
+      this.result = {winner: 'user', text: this.user.addWin(), winningFighter: this.user.currentFighter}
     } else {
-      this.result = {winner: 'computer', text:this.computer.addWin()}
+      this.result = {winner: 'computer', text:this.computer.addWin(), winningFighter: this.computer.currentFighter}
     }
 
     console.log(this.result)
