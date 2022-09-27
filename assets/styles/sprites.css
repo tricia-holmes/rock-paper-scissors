@@ -1,0 +1,88 @@
+:root {
+  --pixel-size: 3.5;
+  --anim-num: 9;
+}
+
+.Character {
+  width: calc(78px * var(--pixel-size));
+  height: calc(66px * var(--pixel-size));
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.reverse-character {
+  transform: scaleX(-1);
+}
+
+.pixelart {
+  image-rendering: pixelated;
+}
+
+.Character_spritesheet {
+  animation: moveSpritesheet 1.2s steps(var(--anim-num)) forwards infinite;
+  height: calc(216 * var(--pixel-size));
+  width: calc(702px * var(--pixel-size));
+  position: absolute;
+  pointer-events: none;
+}
+
+.scout-anim-attack {
+  top: 0px;
+  --anim-num: 9;
+}
+
+.scout-anim-victory {
+  --anim-num: 8;
+  top: calc(-66px * var(--pixel-size));
+}
+
+.scout-anim-idle {
+  --anim-num: 6;
+  top: calc(-66px * 2 * var(--pixel-size));
+}
+
+.scout-anim-defeat {
+  --anim-num: 8;
+  top: calc(-66px * 3 * var(--pixel-size));
+}
+
+.hold-last-frame {
+  animation: moveSpritesheetHoldLastFrame 1.2s steps(calc(var(--anim-num) - 1))
+    forwards;
+}
+
+.attack-frame-mode {
+  animation: moveSpritesheetHoldLastFrame 1.2s steps(calc(var(--anim-num) - 1))
+    forwards 1;
+}
+
+.play-once-mode {
+  animation: moveSpritesheet 1.2s steps(var(--anim-num)) forwards 1;
+}
+
+@keyframes moveSpritesheet {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc((var(--anim-num) * -11.111111111%)), 0, 0);
+  }
+}
+
+@keyframes moveSpritesheetHoldLastFrame {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(
+      calc(((var(--anim-num) - 1) * -11.111111111%)),
+      0,
+      0
+    );
+  }
+}

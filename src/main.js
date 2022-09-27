@@ -1,96 +1,126 @@
 // Global Variables
-var iconMap = {
-  user: '👩🏻',
-  computer: '💻',
-  rock: '🪨',
-  scissors: '✂️',
-  paper: '📄',
-  lizard: '🦎',
-  alien: '👾'
-}
-var user = new Player('User', iconMap.user)
-var computer = new Player('Computer', iconMap.computer)
+var user = new Player('Human', '🌙')
+var computer = new Player('Computer', '👾')
 var game = new Game(user, computer)
+var song = new Audio('assets/music/Sailor Moon Theme (8 Bit Version).mp3')
+
+var sailorMap = {
+  moon: {
+    spriteImg: 'assets/images/moon-sprites.png',
+    idle: `Character_spritesheet pixelart scout-anim-idle`,
+    attack:
+      'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
+    defeat: 'Character_spritesheet pixelart hold-last-frame scout-anim-defeat',
+    victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
+  },
+  mercury: {
+    spriteImg: 'assets/images/mercury-sprites.png',
+    idle: `Character_spritesheet pixelart scout-anim-idle`,
+    attack:
+      'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
+    defeat: 'Character_spritesheet pixelart hold-last-frame scout-anim-defeat',
+    victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
+  },
+  mars: {
+    spriteImg: 'assets/images/mars-sprites.png',
+    idle: `Character_spritesheet pixelart scout-anim-idle`,
+    attack:
+      'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
+    defeat: 'Character_spritesheet pixelart hold-last-frame scout-anim-defeat',
+    victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
+  },
+  jupiter: {
+    spriteImg: 'assets/images/jupiter-sprites.png',
+    idle: `Character_spritesheet pixelart scout-anim-idle`,
+    attack:
+      'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
+    defeat: 'Character_spritesheet pixelart hold-last-frame scout-anim-defeat',
+    victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
+  },
+  venus: {
+    spriteImg: 'assets/images/venus-sprites.png',
+    idle: `Character_spritesheet pixelart scout-anim-idle`,
+    attack:
+      'Character_spritesheet pixelart attack-frame-mode  scout-anim-attack',
+    defeat: 'Character_spritesheet pixelart hold-last-frame scout-anim-defeat',
+    victory: 'Character_spritesheet pixelart play-once-mode scout-anim-victory',
+  },
+}
 
 // DOM Elements
 var homePage = document.querySelector('[data-page-type="home"]')
 var gameBoard = document.querySelector('[data-page-type="game"]')
-var classicBtn = document.querySelector('.home__classic-btn')
-var difficultBtn = document.querySelector('.home__difficult-btn')
-var changeBtn = document.querySelector('.board__change-btn')
-var choiceIcons = document.querySelectorAll('.board__icon-wrapper')
+var boardVideo = document.querySelector('[data-video-type="game"]')
+var classicBtn = document.querySelector('#play-classic-btn')
+var difficultBtn = document.querySelector('#play-difficult-btn')
+var changeBtn = document.querySelector('#change-game-btn')
+var playersSide = document.querySelectorAll('.board__players-side')
+var boardContainer = document.querySelector('.board__icon-container')
 var scores = document.querySelectorAll('.board__wins')
 var boardTitle = document.querySelector('.board__title')
 var subtitle = document.querySelector('.board__subtitle')
-var choiceTokens = document.querySelectorAll('.board__user-selection-icon')
 var iconContainer = document.querySelector('.board__icon-container')
-var lizard = document.querySelector('[data-icon-type="lizard"]')
-var alien = document.querySelector('[data-icon-type="alien"]')
 
 // Event listeners
-window.addEventListener('load', createListenersForChoiceIcons)
-classicBtn.addEventListener('click', playClassicMode)
-difficultBtn.addEventListener('click', playDifficultMode)
+window.addEventListener('click', playSong)
+classicBtn.addEventListener('click', function () {
+  chooseGame(
+    'classic',
+    'Classic Battle',
+    'assets/videos/starry-sky-purple.mp4',
+    'rgba(102, 0, 139, 0.324)'
+  )
+})
+difficultBtn.addEventListener('click', function () {
+  chooseGame(
+    'difficult',
+    'Difficult Battle',
+    'assets/videos/starry-sky-pastel.mp4',
+    '#b28dfb6e'
+  )
+})
 changeBtn.addEventListener('click', goToHome)
 
 // Event Handlers
-function createListenersForChoiceIcons() {
-  for (var i = 0; i < choiceIcons.length; i++) {
-    choiceIcons[i].addEventListener('click', playGame)
-  }
+function playSong() {
+  song.volume = 0.3
+  song.play()
 }
 
-function playClassicMode() {
-  game.type = 'classic'
-  boardTitle.innerText = 'Classic Battle'
-  showIconChoices()
-  hide(homePage)
-  show(gameBoard)
-}
-
-function playDifficultMode() {
-  game.type = 'difficult'
-  boardTitle.innerText = 'Difficult Battle'
-  showIconChoices()
+function chooseGame(type, title, backgroundVideo, color) {
+  game.type = type
+  boardTitle.innerText = title
+  boardVideo.src = backgroundVideo
+  playersSide[0].style.backgroundColor = color
+  playersSide[1].style.backgroundColor = color
+  createFighters()
   hide(homePage)
   show(gameBoard)
 }
 
 function playGame(event) {
   var userSelection = event.currentTarget.dataset.iconType
-  var drawIcon
-
   game.playRound(userSelection)
 
-  if (game.result === `💔 It's a draw! 💔`) {
-    drawIcon = createDrawIcon(userSelection)
-  }
+  displayGameRound()
 
-  displayGameRound(drawIcon, userSelection)
-  setTimeout(function () {
-    resetBoard(drawIcon)
-  }, 2200)
+  if (!game.result.winner) {
+    setTimeout(function () {
+      resetBoard()
+    }, 2500)
+  } else {
+    setTimeout(function () {
+      resetBoard()
+    }, 4200)
+  }
 }
 
 function goToHome() {
   show(homePage)
   hide(gameBoard)
-  hide(lizard)
-  hide(alien)
 }
 
 // Helper functions
-function createDrawIcon(userSelection) {
-  var newDrawSection = document.createElement('div')
-  var newDrawIcon = document.createElement('span')
-  newDrawIcon.innerHTML = iconMap[userSelection]
-
-  newDrawSection.classList.add('board__icon-wrapper')
-  newDrawSection.dataset.iconType = userSelection
-  newDrawSection.appendChild(newDrawIcon)
-  return newDrawSection
-}
-
 function show(element) {
   element.classList.remove('hidden')
 }
@@ -99,28 +129,15 @@ function hide(element) {
   element.classList.add('hidden')
 }
 
-function displayGameRound(drawIcon, userSelection) {
-  showUserSelection(userSelection)
+function displayGameRound() {
   setTimeout(function () {
-    finishRound(drawIcon, userSelection)
+    finishRound()
   }, 700)
 }
 
-function showUserSelection(userSelection) {
-  for (var i = 0; i < choiceTokens.length; i++) {
-    if (
-      choiceTokens[i].closest('button[data-icon-type]').dataset.iconType ===
-      userSelection
-    ) {
-      show(choiceTokens[i])
-    }
-  }
-}
-
-function finishRound(drawIcon, userSelection) {
+function finishRound() {
   updateWins()
-  hideNonSelectedIcon(userSelection)
-  appendDrawIconSection(drawIcon)
+  displaySelectedFighter()
   showResultText()
 }
 
@@ -134,55 +151,84 @@ function updateWins() {
   }
 }
 
-function hideNonSelectedIcon(userSelection) {
-  for (var i = 0; i < choiceIcons.length; i++) {
-    if (
-      choiceIcons[i].dataset.iconType !== userSelection &&
-      choiceIcons[i].dataset.iconType !== computer.currentChoice
-    ) {
-      hide(choiceIcons[i])
-    }
+function displaySelectedFighter() {
+  removeAllFighters()
+  var userFighter = addFighter(user.currentFighter)
+  var computerFighter = addFighter(computer.currentFighter, true)
+
+  if (!game.result.winner) {
+    return
+  }
+
+  if (game.result.winner === 'user') {
+    userFighter.className = sailorMap[user.currentFighter].attack
+    computerFighter.className = sailorMap[computer.currentFighter].defeat
+    setTimeout(function () {
+      setVictory(userFighter)
+    }, 1700)
+  } else {
+    userFighter.className = sailorMap[user.currentFighter].defeat
+    computerFighter.className = sailorMap[computer.currentFighter].attack
+    setTimeout(function () {
+      setVictory(computerFighter)
+    }, 1700)
   }
 }
 
-function appendDrawIconSection(drawIcon) {
-  if (drawIcon) {
-    iconContainer.appendChild(drawIcon)
-  }
+function setVictory(winner) {
+  winner.className = sailorMap[game.result.winningFighter].victory
 }
 
 function showResultText() {
-  subtitle.innerText = game.result
+  subtitle.innerText = game.result.text
 }
 
-function resetBoard(drawIcon) {
-  if (drawIcon) {
-    drawIcon.remove()
-  }
-
-  showIconChoices()
-  hideUserSelection()
+function resetBoard() {
+  createFighters()
   resetResultText()
 }
 
-function showIconChoices() {
+function createFighters() {
+  removeAllFighters()
+
   if (game.type === 'classic') {
-    for (var i = 0; i < 3; i++) {
-      show(choiceIcons[i])
+    for (var i = 0; i < game.classicFighters.length; i++) {
+      addFighter(game.classicFighters[i])
     }
   } else if (game.type === 'difficult') {
-    for (var i = 0; i < choiceIcons.length; i++) {
-      show(choiceIcons[i])
+    for (var i = 0; i < game.difficultFighters.length; i++) {
+      addFighter(game.difficultFighters[i])
     }
-  }
-}
-
-function hideUserSelection() {
-  for (var i = 0; i < choiceTokens.length; i++) {
-    hide(choiceTokens[i])
   }
 }
 
 function resetResultText() {
   subtitle.innerText = 'Choose your fighter!'
+}
+
+function addFighter(fighter, reverseCharacter) {
+  var spriteContainer = document.createElement('div')
+  var spriteImg = document.createElement('img')
+
+  spriteContainer.dataset.iconType = fighter
+  spriteContainer.classList.add('Character')
+  spriteImg.src = sailorMap[fighter].spriteImg
+
+  if (reverseCharacter) {
+    spriteContainer.classList.add('reverse-character')
+  }
+
+  spriteContainer.onclick = playGame
+  spriteImg.className = sailorMap[fighter].idle
+
+  spriteContainer.appendChild(spriteImg)
+  boardContainer.appendChild(spriteContainer)
+
+  return spriteImg
+}
+
+function removeAllFighters() {
+  while (boardContainer.firstChild) {
+    boardContainer.removeChild(boardContainer.firstChild)
+  }
 }

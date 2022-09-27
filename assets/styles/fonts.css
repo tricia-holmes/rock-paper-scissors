@@ -1,11 +1,17 @@
 @font-face {
-  font-family: 'PowerpuffFont';
-  src: url('../fonts/powerpuff-girls-font.ttf') format('truetype');
+  font-family: 'Sailor';
+  src: url('../fonts/sailor.ttf') format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'Pixel';
   src: url('../fonts/pixeloidMono-1G8ae.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: '2P';
+  src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
   font-weight: 400;
 }

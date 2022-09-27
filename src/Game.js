@@ -2,12 +2,14 @@ class Game {
   constructor(user, computer) {
     this.user = user
     this.computer = computer
+    this.classicFighters = ['mercury', 'mars', 'moon']
+    this.difficultFighters = ['mercury', 'mars', 'moon', 'venus', 'jupiter']
     this.winMap = {
-      rock: ['scissors', 'lizard'],
-      paper: ['rock', 'alien'],
-      scissors: ['paper', 'lizard'],
-      lizard: ['paper', 'alien'],
-      alien: ['scissors', 'rock'],
+      mercury: ['mars', 'jupiter'],
+      mars: ['moon', 'venus'],
+      moon: ['mercury', 'venus '],
+      venus: ['mercury', 'jupiter'],
+      jupiter: ['mars', 'moon'],
     }
     this.type
     this.result
@@ -16,34 +18,39 @@ class Game {
   playRound(userSelection) {
     this.computer.takeTurn(this.#getRandomChoice())
     this.user.takeTurn(userSelection)
-    console.log('COMPUTER', this.computer.currentChoice)
-    console.log('USER', this.user.currentChoice)
 
-    if (this.user.currentChoice === this.computer.currentChoice) {
-      this.result = `💔 It's a draw! 💔`
+    if (this.user.currentFighter === this.computer.currentFighter) {
+      this.result = { text: `💔 It's a draw! 💔` }
     } else if (
-      this.winMap[this.user.currentChoice].includes(this.computer.currentChoice)
+      this.winMap[this.user.currentFighter].includes(
+        this.computer.currentFighter
+      )
     ) {
-      this.result = this.user.addWin()
+      this.result = {
+        winner: 'user',
+        text: this.user.addWin(),
+        winningFighter: this.user.currentFighter,
+      }
     } else {
-      this.result = this.computer.addWin()
+      this.result = {
+        winner: 'computer',
+        text: this.computer.addWin(),
+        winningFighter: this.computer.currentFighter,
+      }
     }
-
-    console.log(this.result)
   }
 
   #getRandomChoice() {
-    var classicChoices = ['rock', 'paper', 'scissors']
-    var difficultChoices = ['rock', 'paper', 'scissors', 'lizard', 'alien']
-
     if (this.type === 'classic')
-      for (var i = 0; i < classicChoices.length; i++) {
-        return classicChoices[Math.floor(Math.random() * classicChoices.length)]
+      for (var i = 0; i < this.classicFighters.length; i++) {
+        return this.classicFighters[
+          Math.floor(Math.random() * this.classicFighters.length)
+        ]
       }
     else {
-      for (var i = 0; i < difficultChoices.length; i++) {
-        return difficultChoices[
-          Math.floor(Math.random() * difficultChoices.length)
+      for (var i = 0; i < this.difficultFighters.length; i++) {
+        return this.difficultFighters[
+          Math.floor(Math.random() * this.difficultFighters.length)
         ]
       }
     }
