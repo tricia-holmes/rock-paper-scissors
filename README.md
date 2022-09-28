@@ -49,7 +49,7 @@ ___
 
 - Want to change it up? There's a `Change Game?` button in the bottom right-hand corner. A player can click on this button to go back to the `home page` and select a different game mode.
 
-### Difficult Mode 🌊 🔥 🌙 🪨 ⚡️
+### Difficult Mode 🌊 🔥 🌙 💕 ⚡️
 ___
 
 - If a player chooses to play `difficult` mode, they will be taken to the difficult game page (pastel purple blue background) and see `five Sailor Scout fighters` for their battle. 
@@ -63,7 +63,7 @@ ___
 
 - The Sailor Scouts for difficult are:
 
-    1. Sailor Venus 🪨, 
+    1. Sailor Venus 💕, 
     1. Sailor Mercury 🌊, 
     1. Sailor Mars 🔥, 
     1. Sailor Moon 🌙, 
