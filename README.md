@@ -2,7 +2,7 @@
 # ✨ Sailor Scout Battle! ✨
 
 
-## Abstract: 
+## How to Play: 
 
 I created a rock, paper, scissors game with a `Sailor Moon` themed twist called ✨**Sailor Scout Battle!✨**
 
@@ -11,14 +11,19 @@ I created a rock, paper, scissors game with a `Sailor Moon` themed twist called 
 - There are two game modes to **Sailor Scout Battle**, `classic` and `difficult.`
 
 ### Classic Mode 🌊 🔥 🌙
+___
 
 - If a player chooses to play `classic` mode, they will be taken to the classic game page (dark purple background) and see `three fighters` for their battle. 
 
+![classic fighters](https://user-images.githubusercontent.com/108706408/192675579-d342965e-020a-4978-a4be-c4c32c1fc318.png)
+
+
 - The fighters for classic are:
 
-    Sailor Mercury 🌊, 
-    Sailor Mars 🔥, 
-    and Sailor Moon 🌙. 
+    1. Sailor Mercury 🌊, 
+    1. Sailor Mars 🔥, 
+    1. Sailor Moon 🌙
+    
 
 - The player's side will be on the left and their score will be kept in the `wins` under`Human 🌙`. 
 
@@ -39,12 +44,31 @@ I created a rock, paper, scissors game with a `Sailor Moon` themed twist called 
 - Want to change it up? There's a `Change Game?` button in the bottom right-hand corner. A player can click on this button to go back to the `home page` and select a different game mode.
 
 ### Difficult Mode 🌊 🔥 🌙 🪨 ⚡️
+___
 
 - If a player chooses to play `difficult` mode, they will be taken to the difficult game page (pastel purple blue background) and see `five fighters` for their battle. 
 
 - The game is setup the same as `classic` with more fighters to choose from and more outcomes to happen.
 
-- Just like with `classic`, a player can go back to the `home page` using the `Change Game?` button on the bottom right hand side. 
+![difficult fighters](https://user-images.githubusercontent.com/108706408/192675479-8526ef86-aef6-4455-a415-fe82533ab616.png)
+
+
+- The fighters for difficult are:
+
+    1. Sailor Mercury 🌊, 
+    1. Sailor Mars 🔥, 
+    1. Sailor Moon 🌙, 
+    1. Sailor Venus 🪨,  
+    1. Sailor Venus 🪨, 
+    1. Sailor Moon ⚡️. 
+
+- Just like with `classic`, a player can go back to the `home page` using the `Change Game?` button on the bottom right hand side.
+
+### Win Map:
+___ 
+
+![Sailor Scout Battle  - Win Map](https://user-images.githubusercontent.com/108706408/192673918-56f07c16-98de-488a-8e18-8185dc4a4c1e.png)
+
 
 # Installation Instructions
 
@@ -53,7 +77,7 @@ I created a rock, paper, scissors game with a `Sailor Moon` themed twist called 
 - `cd` into the repo
 - View the project in the browser by running `open index.html` in your terminal
 
-*You can also see it here at this link: ``*
+*You can also see it [here](https://tricia-holmes.github.io/rock-paper-scissors/) at this link: `https://tricia-holmes.github.io/rock-paper-scissors/`*
 
 # Preview of App:
 
@@ -62,6 +86,9 @@ https://user-images.githubusercontent.com/108706408/192657442-be388ddf-3ea6-4070
 # Context:
 
 I am currently a 2208 Mod 1 student at Turing in the frontend program. This is the final solo project of Mod 1. The project was focused on HTML, CSS, and Javascript. I estimate that I spent 50-55 hours on this project.
+
+![Mercury Example](https://user-images.githubusercontent.com/108706408/192664239-c9452c76-8b32-442d-bd85-5d61c64e37db.png)
+
 
 # Contributors:
 [Tricia Holmes](https://github.com/tricia-holmes)
