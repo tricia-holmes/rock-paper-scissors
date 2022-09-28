@@ -47,7 +47,7 @@ ___
 
 - After a round had been played the `wins` will be updated for the winner and the board will reset. It's now time to play another round!
 
-- Want to change it up? There's a `Change Game?` button in the bottom right-hand corner. A player can click on this button to go back to the `home page` and select a different game mode.
+- Want to change it up? There's a `Change Game?` button in the bottom left-hand corner. A player can click on this button to go back to the `home page` and select a different game mode.
 
 ### Difficult Mode 🌊 🔥 🌙 💕 ⚡️
 ___
@@ -69,7 +69,7 @@ ___
     1. Sailor Moon 🌙, 
     1. Sailor Jupiter ⚡️
 
-- Just like with `classic`, a player can go back to the `home page` using the `Change Game?` button on the bottom right hand side.
+- Just like with `classic`, a player can go back to the `home page` using the `Change Game?` button on the bottom left-hand side.
 
 ### Win Map <img src="https://user-images.githubusercontent.com/108706408/192685203-ae70ae42-9218-48b0-92ce-de5c912b17f4.gif" width="25" height="25"/>
 ___ 
@@ -79,7 +79,7 @@ ___
 
 # Context + Resources:
 
-I am currently a 2208 Mod 1 student at Turing in the frontend program. This is the final solo project of Mod 1. The technologies used for it were `HTML`, `CSS`, and `Vanilla Javascript`. The project was to create a rock, paper, scissors game where a player went up against a computer. 
+I am currently a 2208 Mod 1 student at Turing in the frontend program. This is the final solo project of Mod 1. The technologies used for it were `HTML`, `CSS`, and `Vanilla Javascript`. The project was to create a rock, paper, scissors game where a player went up against a computer. This project was my first expereince using `CSS Keyframes` and incorporating the `BEM` naming methodology.  
 
 Early on in developement, I knew I would like for the game to have a `Sailor Moon` theme with an animated background in an `8bit` retro game aesthetic. A very specific style, but I was very hopeful it could all come together!
 
@@ -129,4 +129,4 @@ The `Learning Goals` were:
 
 # Wins + Challenges:
 - A huge `win` for me was having a specific aesthetic in mind and getting to see it come together!
-- I really wanted to challenge myself with `CSS` for this project. My ohter `win` as well as biggest `challenge` would be the `CSS animations` for all of the Sailor Scouts. All scouts had to have `spritesheets` created with even dimensions in order to sucessfully use `CSS keyframes`. It took a lot of work both with `Figma` and `CSS` to get the animations to work. 
+- I really wanted to challenge myself with `CSS` for this project. My ohter `win` as well as biggest `challenge` would be the `CSS animations` for all of the Sailor Scouts. All scouts had to have `spritesheets` created with even dimensions in order to sucessfully use `CSS keyframes`. It took a lot of work both with `Figma` and `CSS` to get the animations to work.
