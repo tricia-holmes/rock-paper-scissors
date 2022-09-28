@@ -59,4 +59,24 @@ I created a rock, paper, scissors game with a `Sailor Moon` themed twist called 
 
 https://user-images.githubusercontent.com/108706408/192657442-be388ddf-3ea6-4070-a26d-620da04ba939.mp4
 
+# Context:
 
+I am currently a 2208 Mod 1 student at Turing in the frontend program. This is the final solo project of Mod 1. The project was focused on HTML, CSS, and Javascript. I estimate that I spent 50-55 hours on this project.
+
+# Contributors:
+[Tricia Holmes](https://github.com/tricia-holmes)
+
+# Learning Goals:
+
+The `Learning Goals` were: 
+- Solidify and demonstrate your understanding of:
+    DRY JavaScript    
+    event delegation to handle similar event listeners
+- Understand the difference between the data model and how the data is displayed on the DOM
+- Use your problem solving process to break down large problems, solve things step by step, and trust yourself to not rely on an outside “answer” to a logical challenge
+
+
+I worked with `HTML`, `CSS`, `Javascript`, and `Figma`.
+
+# Wins + Challenges:
+- I really wanted to challenge myself with `CSS` for this project. My biggest `win` as well as biggest `challenge` would be the `CSS animations` for all of the `fighters`. All `fighters` had to have `spritesheets` created with even dimensions in order to sucessfully use `CSS keyframes`. It took a lot of work both with `Figma` and `CSS` to get the animations to work. 
