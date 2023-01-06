@@ -79,8 +79,6 @@ ___
 
 # Context + Resources:
 
-I am currently a 2208 Mod 1 student at Turing in the frontend program. This is the final solo project of Mod 1. The technologies used for it were `HTML`, `CSS`, and `Vanilla Javascript`. The project was to create a rock, paper, scissors game where a player went up against a computer. This project was my first expereince using `CSS Keyframes` and incorporating the `BEM` naming methodology.  
-
 Early on in developement, I knew I would like for the game to have a `Sailor Moon` theme with an animated background in an `8bit` retro game aesthetic. A very specific style, but I was very hopeful it could all come together!
 
 I was so lucky to find the sprites of my dreams on [The Spriters Resource](https://www.spriters-resource.com/ds_dsi/sailormoonlalunasplende/). Someone had uploaded a spritesheet from an old Nintendo DS Italian Sailor Moon game called `Sailor Moon: La Luna Splende`. 
@@ -117,16 +115,3 @@ The final fun find for this project was discovering that there is an awesome 8bi
 
 # Contributors:
 [Tricia Holmes](https://github.com/tricia-holmes)
-
-# Learning Goals:
-
-The `Learning Goals` were: 
-- Solidify and demonstrate your understanding of:
-    DRY JavaScript    
-    event delegation to handle similar event listeners
-- Understand the difference between the data model and how the data is displayed on the DOM
-- Use your problem solving process to break down large problems, solve things step by step, and trust yourself to not rely on an outside “answer” to a logical challenge
-
-# Wins + Challenges:
-- A huge `win` for me was having a specific aesthetic in mind and getting to see it come together!
-- I really wanted to challenge myself with `CSS` for this project. My ohter `win` as well as biggest `challenge` would be the `CSS animations` for all of the Sailor Scouts. All scouts had to have `spritesheets` created with even dimensions in order to sucessfully use `CSS keyframes`. It took a lot of work both with `Figma` and `CSS` to get the animations to work.
